@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Stranded Sandcastle - Yuge Wang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/project-detail.css">
+</head>
+<body>
+
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="../index.html">Yuge / Ray</a>
+      </div>
+
+      <nav class="topbar-nav desktop-nav">
+        <a href="../index.html" class="topbar-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="topbar-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="topbar-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="topbar-link">Other Projects</a>
+        <a href="../aboutMe.html" class="topbar-link">About</a>
+      </nav>
+
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <!-- https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaExpanded and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-controls. Aria-expanded is telling screen reader this is for the boolean status of this hamburger, aria-controls is telling screen reader this controls "mobileMenu" id -->
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="../index.html" class="mobile-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="mobile-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="mobile-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="mobile-link">Other Projects</a>
+        <a href="../aboutMe.html" class="mobile-link">About</a>
+      </nav>
+    </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <header class="detail-header reveal">
+        <h1 class="detail-title">T H E - S T R A N D E D</h1>
+        <h1 class="detail-title">S A N D C A S T L E</h1>
+        
+        <div class="strand-divider"></div>
+
+        <div class="project-specs">
+          <div class="spec-item">
+            <span class="spec-label">TYPE</span>
+            <span class="spec-value">VR Experience / Rec Room Circuits Level</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">ROLE</span>
+            <span class="spec-value">Game Flow Design & Circuit Implementation</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">TOOLS</span>
+            <span class="spec-value">Rec Room / Circuits</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">YEAR</span>
+            <span class="spec-value">2024</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="media-highlight reveal">
+
+        <div class="image-wrapper small-image">
+          <img src="../img/sand-castle/cover.png" alt="The Stranded Sandcastle - VR Experience">
+        </div>
+
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/yv-ntybmVyY" 
+            title="YouTube video player" 
+            style="border: 0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="action-bar">
+          <a href="https://rec.net/room/IAT_445_Group_5_Final_Project" target="_blank" class="external-btn">
+            LAUNCH REC ROOM ROOM <span class="arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="detail-article">
+
+        <div class="content-block reveal">
+            <div class="block-label">/// PROJECT OVERVIEW</div>
+            <div class="block-text">
+            <p>
+                <strong>The Stranded Sandcastle</strong> is a VR puzzle-adventure experience built in Rec Room that explores the theme of <span class="highlight-bg">scale and perspective</span>. Players find themselves stranded on an isolated island after their boat breaks down. After building a sandcastle to protect turtle eggs, they are shrunk down by crabs who see them as a threat. The player must navigate through the now-giant sandcastle, solving three puzzles to retrieve colored pearls and restore their original size.
+            </p>
+            <p>
+                The experience uses VR's unique ability to immerse players directly into an environment, transforming familiar beach objects—sandcastles, crabs, seashells—into massive, threatening structures. The project combines <span class="highlight-bg">physics-based interactions, dexterity challenges, and observational logic</span> to create a cohesive puzzle-adventure that demonstrates how changing scale can completely reshape how players experience and interact with their environment.
+            </p>
+            <p>
+                Built using Rec Room's circuit-based system rather than traditional code, the project emphasizes collaborative real-time development and rapid iteration. The sandcastle serves as a multi-level fortress with a flooded basement, main floor, second floor, and rooftop, each presenting unique challenges that test different VR mechanics.
+            </p>
+            <div class="full-image two-images">
+              <div class="image-pair">
+                <img src="../img/sand-castle/overview-1.png" alt="Beach scene with sandcastle, boat, and hermit crab">
+                <img src="../img/sand-castle/castle.png" alt="Sandcastle exterior view with low-poly art style">
+              </div>
+              <span class="caption">Figure 01 & 02. Game Environment - Beach setting and sandcastle exterior</span>
+            </div>
+            <div class="full-image">
+              <img src="../img/sand-castle/overview.png" alt="Tropical island scene with player's hand perspective">
+              <span class="caption">Figure 03. Island Overview - Scale perspective showing player's shrunken size</span>
+            </div>
+            </div>
+        </div>
+
+        <div class="content-block image-start reveal">
+            <div class="block-label">/// ROLE</div>
+            <div class="block-text">
+                <p>
+                    I served as the <strong>Game Flow Designer and Circuit Implementation Lead</strong> for this project. I was responsible for designing the complete gameplay flow and implementing three puzzle rooms using Rec Room's circuit system.
+                </p>
+                <p>
+                    <strong>Game Flow Design:</strong> I designed the overall progression structure, ensuring that each puzzle room built upon the previous one while introducing new mechanics. The flow guides players from the flooded basement through platforming challenges to the final logic puzzle, creating a cohesive journey that maintains engagement while gradually increasing complexity.
+                </p>
+                <p>
+                    <strong>Puzzle 1 - Basement (Accuracy & Physics):</strong> I designed and implemented the <span class="highlight-bg">basketball-throwing room</span> in the flooded basement. Players must physically throw objects into target baskets on the far wall, testing hand-eye coordination and VR physics accuracy. I built the circuit system using Rec Room's "Trigger Volumes" to detect when objects enter target areas. When all targets are hit, the circuit sends a signal to a gizmo that physically slides a stone wall open, revealing the White Pearl. This puzzle establishes the core interaction loop and introduces players to the physicality of VR interactions.
+                </p>
+                <div class="full-image">
+                  <img src="../img/sand-castle/puzzle-1.png" alt="Puzzle 1 - Flooded basement with aquatic theme, shells, and starfish">
+                  <span class="caption">Figure 04. Puzzle 1 - Basement room with aquatic elements and throwing targets</span>
+                </div>
+                <p>
+                    <strong>Transition System - Pearl-Based Door Mechanics:</strong> I implemented the <span class="highlight-bg">pearl collection and door unlocking system</span> that connects all three puzzle rooms. Each pearl acts as a key that unlocks progression to the next area. I designed the circuit logic that detects when a pearl is placed on the designated clam shell, triggering door mechanisms that grant access to subsequent rooms. This system creates a clear sense of progression and ensures players understand how their actions directly impact the environment.
+                </p>
+                <p>
+                    <strong>Puzzle 2 - Dexterity Room (Umbrella Scaling):</strong> I designed and built the second puzzle room, which requires players to navigate a series of platforms while managing an obstacle. The core mechanic I implemented is the <span class="highlight-bg">umbrella scaling system</span>—players must find a control that can shrink or enlarge the umbrella blocking their path. This mechanic demonstrates that while players are small, they still have agency over their environment through the magic left by the crab. The circuit system I built controls the umbrella's size transformation, allowing players to manipulate scale as a gameplay tool rather than just experiencing it passively.
+                </p>
+                <div class="full-image">
+                  <img src="../img/sand-castle/puzzle-2.png" alt="Puzzle 2 - Platforming room with water pool and fish">
+                  <span class="caption">Figure 05. Puzzle 2 - Dexterity room with platforms and water elements</span>
+                </div>
+                <p>
+                    <strong>Puzzle 3 - Logic Room (Button Sequence):</strong> I designed and implemented the final puzzle on the upper level, which shifts focus from physical skill to mental observation. I built a <span class="highlight-bg">button sequence system</span> where players must find hidden buttons around the room and press them in a specific order. The circuit logic I created tracks button presses, validates the sequence, and deactivates walls when the correct order is input, granting access to the Bronze Pearl. This puzzle requires players to observe their environment carefully and remember spatial relationships, creating a satisfying conclusion that tests a different skill set than the previous challenges.
+                </p>
+                <div class="full-image">
+                  <img src="../img/sand-castle/puzzle-3.png" alt="Puzzle 3 - Logic room with shelves, purple starfish, and button elements">
+                  <span class="caption">Figure 06. Puzzle 3 - Logic room with button sequence mechanics</span>
+                </div>
+                <div class="full-image">
+                  <img src="../img/sand-castle/top-floor.png" alt="Top floor view of the sandcastle structure">
+                  <span class="caption">Figure 07. Sandcastle Structure - Multi-level fortress design</span>
+                </div>
+                <p>
+                    Throughout development, I focused on creating intuitive circuit logic that felt responsive and reliable. Working within Rec Room's visual circuit system required translating gameplay intentions into signal flows, trigger conditions, and gizmo activations—a process that demanded both creative problem-solving and systematic debugging to ensure all interactions worked consistently across playtests.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block reveal">
+            <div class="block-label">/// REFLECTION</div>
+            <div class="block-text">
+            <p>
+                This project demonstrated how <strong>visual circuit-based development</strong> can enable rapid iteration and collaborative design in VR. Working with Rec Room's circuit system rather than traditional code allowed me to quickly prototype puzzle mechanics, test interactions, and refine the gameplay flow through immediate visual feedback. The ability to see signal flows and trigger conditions in real-time made debugging more intuitive and accelerated the design process.
+            </p>
+            <p>
+                Designing three distinct puzzle rooms that each test different VR mechanics taught me the importance of <span class="highlight-bg">mechanical variety within a cohesive flow</span>. Each puzzle—physics-based throwing, dexterity-based platforming with scale manipulation, and observation-based logic—required different circuit implementations, but they all needed to feel like part of the same experience. Balancing mechanical diversity with narrative coherence was a key challenge that strengthened my ability to design interconnected systems.
+            </p>
+            <p>
+                Working within Rec Room's constraints—particularly around physics, collisions, and motion sickness—taught me to prioritize player comfort and reliable interactions over ambitious but unstable mechanics. The iterative testing process revealed that simple, well-executed interactions often create better experiences than complex systems that break under edge cases. This project strengthened my ability to design within platform limitations while still creating engaging, memorable gameplay experiences.
+            </p>
+            </div>
+        </div>
+
+      </div> 
+
+      <div class="project-footer reveal">
+        <a href="../index.html" class="nav-btn prev-btn">← BACK TO ALL</a>
+        <!--<a href="#" class="nav-btn next-btn">NEXT PROJECT →</a>-->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Project Drawer -->
+  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-head">
+      <span class="drawer-title">▸ ALL PROJECTS</span>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-list">
+      <a href="beneathTheGrey.html" class="drawer-card">
+        <img src="../img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">BENEATH THE GREY</h4></div>
+      </a>
+      <a href="witchsWinter.html" class="drawer-card">
+        <img src="../img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">WITCH'S WINTER</h4></div>
+      </a>
+      <a href="sandcastle.html" class="drawer-card is-current">
+        <img src="../img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">RECROOM CIRCUITS</span><h4 class="drawer-card-name">THE STRANDED SANDCASTLE</h4></div>
+        <span class="drawer-card-current">CURRENT</span>
+      </a>
+      <a href="portal2.html" class="drawer-card">
+        <img src="../img/redesign-portal/cover.png" alt="Portal 2" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">REDESIGN GAME LEVEL</span><h4 class="drawer-card-name">PORTAL 2</h4></div>
+      </a>
+      <a href="tunnelVision.html" class="drawer-card">
+        <img src="../img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">3D ANIMATION</span><h4 class="drawer-card-name">TUNNEL VISION</h4></div>
+      </a>
+      <a href="theLost.html" class="drawer-card">
+        <img src="../img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">THE LOST</h4></div>
+      </a>
+      <a href="purrSuation.html" class="drawer-card">
+        <img src="../img/purr-suation/cover.png" alt="Purr-suation" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">PURR-SUATION</h4></div>
+      </a>
+      <a href="moonlightIsland.html" class="drawer-card">
+        <img src="../img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">MOONLIGHT ISLAND</h4></div>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+    }, { passive: true });
+  }
+  var tab = document.getElementById('drawerTab');
+  var panel = document.getElementById('drawerPanel');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeBtn = document.getElementById('drawerClose');
+  function openDrawer() { panel.classList.add('open'); overlay.classList.add('open'); tab.style.display = 'none'; }
+  function closeDrawer() { panel.classList.remove('open'); overlay.classList.remove('open'); tab.style.display = ''; }
+  if (tab) tab.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+})();
+</script>
+  <script src="../js/detail-interactions.js"></script>
+</body>
+</html>

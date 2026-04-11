@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal 2 Redesign - Yuge Wang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/project-detail.css">
+</head>
+<body>
+
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="../index.html">Yuge / Ray</a>
+      </div>
+
+      <nav class="topbar-nav desktop-nav">
+        <a href="../index.html" class="topbar-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="topbar-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="topbar-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="topbar-link">Other Projects</a>
+        <a href="../aboutMe.html" class="topbar-link">About</a>
+      </nav>
+
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <!-- https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaExpanded and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-controls. Aria-expanded is telling screen reader this is for the boolean status of this hamburger, aria-controls is telling screen reader this controls "mobileMenu" id -->
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="../index.html" class="mobile-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="mobile-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="mobile-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="mobile-link">Other Projects</a>
+        <a href="../aboutMe.html" class="mobile-link">About</a>
+      </nav>
+    </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <header class="detail-header reveal">
+        <h1 class="detail-title">P O R T A L - 2</h1>
+        
+        <div class="strand-divider"></div>
+
+        <div class="project-specs">
+          <div class="spec-item">
+            <span class="spec-label">TYPE</span>
+            <span class="spec-value">Level Redesign</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">ROLE</span>
+            <span class="spec-value">Research & Documentation & Level Design & Prototyping</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">TOOLS</span>
+            <span class="spec-value">Paper Prototyping / Research Documentation</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">YEAR</span>
+            <span class="spec-value">2024</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="media-highlight reveal">
+
+        <div class="image-wrapper small-image">
+          <img src="../img/redesign-portal/cover.png" alt="Portal 2 Redesign - Level Design">
+        </div>
+
+      </div>
+
+      <div class="detail-article">
+
+        <div class="content-block reveal">
+            <div class="block-label">/// PROJECT OVERVIEW</div>
+            <div class="block-text">
+            <p>
+                This project redesigned <strong>Portal 2's co-op mode</strong> into a story-driven, two-player experience that addresses the original game's lack of narrative and limited collaborative cognition. While Portal 2's single-player campaign delivers strong storytelling, the co-op mode contains minimal story development, creating a gap between modern player expectations for cooperative, story-driven gameplay and what the original provides.
+            </p>
+            <p>
+                The redesign applies cognitive frameworks—<span class="highlight-bg">Smart-seeing, Projecting, and Close-coupling</span>—to create a modern two-player experience that deepens cooperative cognition, enhances shared decision-making, and supports intuitive collaborative interaction. The solution introduces asymmetric character abilities: Player A (IR-141, a floating robot) can see hidden UV symbols but cannot press floor switches, while Player B (AX-421, a humanoid robot) can manipulate physical objects but lacks UV vision.
+            </p>
+            <p>
+                This <span class="highlight-bg">information asymmetry</span> transforms puzzle-solving into a distributed cognition system where players must communicate, synchronize actions, and combine perspectives to progress through both narrative and mechanical challenges. The redesign maintains Portal 2's core spatial reasoning mechanics while evolving them into a story-driven cooperative experience.
+            </p>
+            </div>
+        </div>
+
+        <div class="content-block image-start reveal">
+            <div class="block-label">/// ROLE</div>
+            <div class="block-text">
+                <p>
+                    I served as the <strong>Lead Researcher, Documentation Writer, Level Designer, and Prototype Developer</strong> for this project. Beyond initial ideation (mind maps and sketches), I was responsible for all research, documentation, physical prototyping, and level structure design.
+                </p>
+                <p>
+                    <strong>Research & Documentation:</strong> I conducted comprehensive research on cognitive frameworks (Smart-seeing, Projecting, Close-coupling) and their application to cooperative puzzle design. My research question focused on how cooperative puzzles can use <span class="highlight-bg">Smart-seeing to help both players clearly understand each other's actions, shared goals, and available options without relying on verbal communication</span>. I documented how visual cues, shared markers, and environmental signals enable intuitive collaboration by externalizing cognitive information into the environment.
+                </p>
+                <p>
+                    I wrote the complete project documentation, synthesizing team research into a cohesive design framework. This included analyzing Portal 2's original mechanics, comparing it with modern puzell games and co-op games (The Witness, We Were Here Together, It Takes Two), and articulating how cognitive principles shape our redesign approach.
+                </p>
+                <p>
+                    <strong>Level Structure & Flow Design:</strong> I designed the complete level architecture and interaction flow. The level structure follows a two-floor layout where players must split paths, gather asymmetric information, and synchronize actions to progress. I defined the <span class="highlight-bg">3-part core loop: Sense → Communicate → Sync Action</span>—where players observe their environment, share information to build a shared mental model, and perform coordinated actions such as timing switches or aligning portals.
+                </p>
+                <p>
+                    The interaction logic I designed creates interdependent progression: Player A navigates a maze on Floor 1, discovering UV symbols in sequence, while Player B remains on Floor 2 to activate mechanisms. Player A communicates the symbol sequence to Player B, who inputs it to unlock Player A's exit. Both players then synchronize on final pads to complete the level. This structure ensures that <span class="highlight-bg">cooperation is mandatory, not optional</span>.
+                </p>
+                <div class="full-image">
+                  <img src="../img/redesign-portal/prototype-sketch.png" alt="Product prototype diagram showing level layout and interaction flow">
+                  <span class="caption">Figure 01. Product Prototype Diagram - Level layout showing maze, gates, buttons, and player positions</span>
+                </div>
+                <p>
+                    <strong>Physical Prototyping:</strong> I created handcrafted paper prototypes to validate puzzle flow and cooperative dynamics. These folded-paper models represented rooms, walls, platforms, and interactable objects, allowing us to manually simulate player movement, line-of-sight communication, and information distribution between two players. Through iterative testing with these physical prototypes, I refined spatial layout, identified communication bottlenecks, and ensured puzzle intentions were readable through environmental cues alone.
+                </p>
+                <div class="full-image">
+                  <img src="../img/redesign-portal/prototype.png" alt="Physical paper prototype of level design">
+                  <span class="caption">Figure 02. Physical Paper Prototype - Handcrafted cardboard and paper model for testing spatial layout and cooperative dynamics</span>
+                </div>
+                <p>
+                    The prototyping process revealed critical design insights: how visual hierarchy guides attention, how asymmetric information creates natural communication needs, and how spatial separation enhances rather than hinders collaboration. These physical tests informed the final level design, ensuring that the digital implementation would support intuitive cooperative problem-solving.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block reveal">
+            <div class="block-label">/// REFLECTION</div>
+            <div class="block-text">
+            <p>
+                This project demonstrated how <strong>research-driven design and physical prototyping</strong> can transform existing game mechanics into modern, cognitively sophisticated experiences. By grounding the redesign in established cognitive frameworks, I learned to justify design decisions with theory while ensuring practical playability through iterative prototyping.
+            </p>
+            <p>
+                The physical prototyping phase was particularly valuable—testing with folded-paper models revealed that <span class="highlight-bg">spatial comprehension and communication patterns</span> could be validated before digital implementation. This low-cost approach allowed rapid iteration on level structure, information distribution, and cooperative flow, catching design issues early and reducing development overhead.
+            </p>
+            <p>
+                Writing comprehensive documentation while designing the level structure taught me to <span class="highlight-bg">bridge theory and practice</span>—articulating how cognitive principles translate into concrete gameplay mechanics. The experience strengthened my ability to design systems where mechanics serve both functional gameplay and theoretical goals, creating experiences that are both engaging and intellectually grounded.
+            </p>
+            </div>
+        </div>
+
+      </div> 
+
+      <div class="project-footer reveal">
+        <a href="../index.html" class="nav-btn prev-btn">← BACK TO ALL</a>
+        <!--<a href="#" class="nav-btn next-btn">NEXT PROJECT →</a>-->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Project Drawer -->
+  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-head">
+      <span class="drawer-title">▸ ALL PROJECTS</span>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-list">
+      <a href="beneathTheGrey.html" class="drawer-card">
+        <img src="../img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">BENEATH THE GREY</h4></div>
+      </a>
+      <a href="witchsWinter.html" class="drawer-card">
+        <img src="../img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">WITCH'S WINTER</h4></div>
+      </a>
+      <a href="sandcastle.html" class="drawer-card">
+        <img src="../img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">RECROOM CIRCUITS</span><h4 class="drawer-card-name">THE STRANDED SANDCASTLE</h4></div>
+      </a>
+      <a href="portal2.html" class="drawer-card is-current">
+        <img src="../img/redesign-portal/cover.png" alt="Portal 2" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">REDESIGN GAME LEVEL</span><h4 class="drawer-card-name">PORTAL 2</h4></div>
+        <span class="drawer-card-current">CURRENT</span>
+      </a>
+      <a href="tunnelVision.html" class="drawer-card">
+        <img src="../img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">3D ANIMATION</span><h4 class="drawer-card-name">TUNNEL VISION</h4></div>
+      </a>
+      <a href="theLost.html" class="drawer-card">
+        <img src="../img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">THE LOST</h4></div>
+      </a>
+      <a href="purrSuation.html" class="drawer-card">
+        <img src="../img/purr-suation/cover.png" alt="Purr-suation" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">PURR-SUATION</h4></div>
+      </a>
+      <a href="moonlightIsland.html" class="drawer-card">
+        <img src="../img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">MOONLIGHT ISLAND</h4></div>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+    }, { passive: true });
+  }
+  var tab = document.getElementById('drawerTab');
+  var panel = document.getElementById('drawerPanel');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeBtn = document.getElementById('drawerClose');
+  function openDrawer() { panel.classList.add('open'); overlay.classList.add('open'); tab.style.display = 'none'; }
+  function closeDrawer() { panel.classList.remove('open'); overlay.classList.remove('open'); tab.style.display = ''; }
+  if (tab) tab.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+})();
+</script>
+  <script src="../js/detail-interactions.js"></script>
+</body>
+</html>

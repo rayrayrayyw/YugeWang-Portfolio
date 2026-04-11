@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Purr-suation - Yuge Wang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/project-detail.css">
+</head>
+<body>
+
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="../index.html">Yuge / Ray</a>
+      </div>
+
+      <nav class="topbar-nav desktop-nav">
+        <a href="../index.html" class="topbar-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="topbar-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="topbar-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="topbar-link">Other Projects</a>
+        <a href="../aboutMe.html" class="topbar-link">About</a>
+      </nav>
+
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <!-- https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaExpanded and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-controls. Aria-expanded is telling screen reader this is for the boolean status of this hamburger, aria-controls is telling screen reader this controls "mobileMenu" id -->
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="../index.html" class="mobile-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="mobile-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="mobile-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="mobile-link">Other Projects</a>
+        <a href="../aboutMe.html" class="mobile-link">About</a>
+      </nav>
+    </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <header class="detail-header reveal">
+        <h1 class="detail-title">P U R R - S U A S I O N</h1>
+        
+        <div class="strand-divider"></div>
+
+        <div class="project-specs">
+          <div class="spec-item">
+            <span class="spec-label">TYPE</span>
+            <span class="spec-value">Board Game</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">ROLE</span>
+            <span class="spec-value">Game Systems Design & Card Design</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">TOOLS</span>
+            <span class="spec-value">Figma / Tabletop Simulator</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">YEAR</span>
+            <span class="spec-value">2024</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="media-highlight reveal">
+
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/i35mBRwHgIk" 
+            title="YouTube video player" 
+            style="border: 0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <p class="showcase-note">
+          <a href="https://www.sfu.ca/siat/showcase/fall-2024-project-showcase/iat-312-purr-suasion.html" target="_blank" class="showcase-link">Purr-suation</a> was selected for the SFU SIAT Project Gallery and featured on the SFU Showcase webpages.
+        </p>
+        
+        <div class="action-bar">
+          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3383452044" target="_blank" class="external-btn">
+            LAUNCH TABLETOP SIMULATOR<span class="arrow">↗</span>
+          </a>
+        </div>
+
+
+
+      </div>
+
+      <div class="detail-article">
+
+        <div class="content-block reveal">
+            <div class="block-label">/// PROJECT OVERVIEW</div>
+            <div class="block-text">
+            <p>
+                <strong>Purr-suation</strong> is a 4-6 player party-style board game where players take on the roles of cats competing to solve household problems in Grandma's house. The game centers around creative conflict resolution: when multiple players land in the same room, they must use Item Cards given by their opponents to craft absurd solutions to household problems, then convince non-involved players to vote for their idea.
+            </p>
+            <div class="full-image two-images">
+              <div class="image-pair">
+                <img src="../img/purr-suation/Rulesheet 1.png" alt="Rulesheet 1">
+                <img src="../img/purr-suation/Rulesheet 2.png" alt="Rulesheet 2">
+              </div>
+              <span class="caption">Figure 01 & 02. Rulesheet.</span>
+          </div>
+            <p>
+                The game's core appeal lies in its <span class="highlight-bg">People Fun mechanics</span>—forcing players to engage socially through persuasion, voting, and creative problem-solving. Each dice roll moves players between six distinct rooms, and the accumulation of all dice rolls creates a countdown timer (75 for 4 players, 100 for 5-6 players) signaling Grandma's return. The player with the most <span class="highlight-bg">Cutie Points</span> when Grandma arrives wins.
+            </p>
+            </div>
+        </div>
+
+        <div class="content-block image-start reveal">
+            <div class="block-label">/// ROLE & INTERACTION FLOW</div>
+            <div class="block-text">
+                <p>
+                    I served as the <strong>Game Systems Designer</strong>, responsible for designing the complete gameplay architecture from win/loss conditions to system integration. My work encompassed defining how all mechanics interconnect—the conflict resolution system, voting mechanics, item card distribution, and the countdown timer—to create a cohesive experience that prioritizes social interaction and creative chaos.
+                </p>
+                <p>
+                    A key contribution was designing the <span class="highlight-bg">Basic Game Loop</span>, which structures each round: players roll dice to move to rooms (1-6), triggering either solo actions (drawing item cards) or conflicts when multiple players land together. In conflicts, players exchange item cards, draw room-specific conflict cards, create solutions using the opponent's given item, and persuade non-involved players to vote. The loop ensures continuous engagement by making solo players active participants in voting, preventing disengagement.
+                </p>
+                <div class="full-image">
+                  <img src="../img/purr-suation/loop.png" alt="Basic Game Loop flowchart">
+                  <span class="caption">Figure 03. Basic Game Loop - Core interaction flow I designed</span>
+                </div>
+                <p>
+                    I designed each card's <span class="highlight-bg">unique mechanical effect</span> to create meaningful choices and prevent obvious decisions. Every Item Card and Event Card was crafted to contribute to the game's chaotic, creative atmosphere while maintaining strategic depth. The voting system—where unanimous votes award double points—creates social dynamics that reward both creativity and persuasion skills.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block image-start reveal">
+            <div class="block-label">/// GAME SYSTEMS</div>
+            <div class="block-text">
+                <p>
+                    <strong>Win/Loss System:</strong> I designed the victory condition around Cutie Points accumulation, with the countdown timer (Grandma's return) creating urgency. The threshold scales with player count (75 for <4 players, 100 for 4+ players) to balance game length. This system ensures games last 30-40 minutes while maintaining tension as the countdown approaches.
+                </p>
+                <p>
+                    <strong>Conflict Resolution System:</strong> When players land in the same room, they enter a conflict phase. I designed this to require players to give an Item Card to their opponent, who must use it in their solution—creating the core challenge of using mismatched items creatively. The system ensures both players are engaged: the giver strategically chooses a difficult item, while the receiver must find creative ways to incorporate it.
+                </p>
+                <p>
+                    I designed <span class="highlight-bg">room-specific Event Cards</span> for each of the six rooms (kitchen, bedroom, bathroom, living room, etc.), each containing absurd and nonsensical household problems that players must solve. These event cards are deliberately ridiculous—from broken vases to mysterious stains to neighbor complaints—creating scenarios where players must use completely unrelated items to craft creative solutions. The <span class="highlight-bg">mismatch between room context, event problem, and given item card</span> drives the game's humor and creative challenge, ensuring every conflict feels unique and unpredictable.
+                </p>
+                <div class="full-image">
+                  <img src="../img/purr-suation/event card.png" alt="Event card design example">
+                  <span class="caption">Figure 04. Event Card Design example</span>
+              </div>
+                <p>
+                    <strong>Voting & Scoring System:</strong> Non-involved players vote simultaneously to avoid bias. Each vote equals 1 Cutie Point, but if all voters choose the same player, that player receives <span class="highlight-bg">double points</span>—rewarding exceptional creativity and persuasion. The loser draws a new Item Card, maintaining hand size and future opportunities.
+                </p>
+                <p>
+                    <strong>Item Card System:</strong> I designed all 50 Item Cards with unique, often absurd objects (HDMI cables, hammers, bananas) that create humorous mismatches with conflict scenarios. Each card's effect is its inherent challenge—forcing creative problem-solving rather than providing obvious solutions. The system ensures players start with 3 cards, can gain cards when alone or after losing conflicts, and must discard used cards back into the deck.
+                </p>
+                <div class="full-image">
+                  <img src="../img/purr-suation/item card.png" alt="Item card design example">
+                  <span class="caption">Figure 05. Item Card Design example</span>
+              </div>
+                <p>
+                    <strong>Countdown Integration:</strong> Every dice roll adds to Grandma's Countdown, creating a shared resource that all players contribute to. This mechanic ensures every action has weight and prevents players from stalling. The integration of movement, conflict, and timer creates a <span class="highlight-bg">dynamic pacing</span> where players must balance gathering points with managing the game's end condition.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block reveal">
+            <div class="block-label">/// REFLECTION</div>
+            <div class="block-text">
+            <p>
+                This project demonstrated the importance of <strong>systemic thinking in game design</strong>. Designing the complete gameplay architecture required understanding how each mechanic influences player behavior and social dynamics. The game loop I created ensures continuous engagement by making every player an active participant—even when not in conflict, players vote and influence outcomes.
+            </p>
+            <p>
+                The iterative process revealed that <span class="highlight-bg">simplicity and clarity are essential for People Fun</span>. Early iterations included character perks and complex item creation mechanics that overcomplicated the core experience. By focusing on the essential loop—conflict, persuasion, voting—the game achieved its goal of fostering social interaction and creative chaos.
+            </p>
+            <p>
+                Designing unique card effects taught me that <span class="highlight-bg">constraints drive creativity</span>. The mismatched item-card-to-conflict system forces players to think creatively, turning potential frustration into humor and engagement. This experience strengthened my ability to design systems where mechanics serve both gameplay function and player experience goals.
+            </p>
+            </div>
+        </div>
+
+      </div> 
+
+      <div class="project-footer reveal">
+        <a href="../index.html" class="nav-btn prev-btn">← BACK TO ALL</a>
+        <!--<a href="#" class="nav-btn next-btn">NEXT PROJECT →</a>-->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Project Drawer -->
+  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-head">
+      <span class="drawer-title">▸ ALL PROJECTS</span>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-list">
+      <a href="beneathTheGrey.html" class="drawer-card">
+        <img src="../img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">BENEATH THE GREY</h4></div>
+      </a>
+      <a href="witchsWinter.html" class="drawer-card">
+        <img src="../img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">WITCH'S WINTER</h4></div>
+      </a>
+      <a href="sandcastle.html" class="drawer-card">
+        <img src="../img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">RECROOM CIRCUITS</span><h4 class="drawer-card-name">THE STRANDED SANDCASTLE</h4></div>
+      </a>
+      <a href="portal2.html" class="drawer-card">
+        <img src="../img/redesign-portal/cover.png" alt="Portal 2" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">REDESIGN GAME LEVEL</span><h4 class="drawer-card-name">PORTAL 2</h4></div>
+      </a>
+      <a href="tunnelVision.html" class="drawer-card">
+        <img src="../img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">3D ANIMATION</span><h4 class="drawer-card-name">TUNNEL VISION</h4></div>
+      </a>
+      <a href="theLost.html" class="drawer-card">
+        <img src="../img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">THE LOST</h4></div>
+      </a>
+      <a href="purrSuation.html" class="drawer-card is-current">
+        <img src="../img/purr-suation/cover.png" alt="Purr-suation" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">PURR-SUATION</h4></div>
+        <span class="drawer-card-current">CURRENT</span>
+      </a>
+      <a href="moonlightIsland.html" class="drawer-card">
+        <img src="../img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">MOONLIGHT ISLAND</h4></div>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+    }, { passive: true });
+  }
+  var tab = document.getElementById('drawerTab');
+  var panel = document.getElementById('drawerPanel');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeBtn = document.getElementById('drawerClose');
+  function openDrawer() { panel.classList.add('open'); overlay.classList.add('open'); tab.style.display = 'none'; }
+  function closeDrawer() { panel.classList.remove('open'); overlay.classList.remove('open'); tab.style.display = ''; }
+  if (tab) tab.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+})();
+</script>
+  <script src="../js/detail-interactions.js"></script>
+</body>
+</html>

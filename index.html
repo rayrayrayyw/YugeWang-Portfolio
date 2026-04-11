@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yuge Wang — Game & Level Designer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/home.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.172/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.172/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- timefall rain layers -->
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ======= HERO ======= -->
+  <header class="hero" id="hero">
+
+    <!-- Three.js WebGL canvas mounts here -->
+    <div id="heroWebGL" class="hero-webgl"></div>
+
+    <!-- Strand connection canvas -->
+    <canvas id="strandCanvas" class="strand-canvas" aria-hidden="true"></canvas>
+
+    <!-- HUD corners -->
+    <div class="hud hud-tl anim-fade" style="--d:2s"><span class="hud-dot"></span>STRAND.ONLINE</div>
+    <div class="hud hud-tr anim-fade" style="--d:2.2s">BUILD 2026.06</div>
+    <div class="hud hud-bl anim-fade" style="--d:2.4s">BRIDGE://HOME</div>
+    <div class="hud hud-br anim-fade" style="--d:2.6s" id="heroCoords">[0000, 0000]</div>
+
+    <!-- Menu overlay -->
+    <div class="menu-screen">
+
+      <div class="hero-upper anim-fade" style="--d:.3s">
+        <h1 class="hero-headline chromatic" data-text="BETWEEN">BETWEEN</h1>
+        <h1 class="hero-headline hero-headline--2 chromatic" data-text="WORLDS">WORLDS</h1>
+      </div>
+
+      <div class="hero-credit anim-fade" style="--d:.7s">
+        <span class="credit-line"></span>
+        <span class="credit-name">Yuge Wang</span>
+        <span class="credit-line"></span>
+      </div>
+
+      <p class="hero-role anim-fade" style="--d:.9s">game &ensp;· &ensp;level &ensp;· &ensp;designer</p>
+
+      <!-- strand origin point -->
+      <div class="strand-origin anim-fade" style="--d:1s" aria-hidden="true"></div>
+
+      <nav class="main-menu anim-fade" style="--d:1.1s" id="mainMenu">
+        <a href="#content-start" class="menu-item" data-filter="all">
+          <span class="mi-label">ALL PROJECTS</span>
+          <span class="mi-desc">explore all works</span>
+        </a>
+        <a href="#content-start" class="menu-item" data-filter="digital">
+          <span class="mi-label">DIGITAL GAMES</span>
+          <span class="mi-desc">Unity & Rec Room</span>
+        </a>
+        <a href="#content-start" class="menu-item" data-filter="board">
+          <span class="mi-label">BOARD GAMES</span>
+          <span class="mi-desc">tabletop systems</span>
+        </a>
+        <a href="#content-start" class="menu-item" data-filter="other">
+          <span class="mi-label">OTHER PROJECTS</span>
+          <span class="mi-desc">level design & 3D</span>
+        </a>
+        <a href="aboutMe.html" class="menu-item">
+          <span class="mi-label">ABOUT ME</span>
+          <span class="mi-desc">player profile</span>
+        </a>
+      </nav>
+
+      <p class="hero-flavor anim-fade" style="--d:1.6s">
+        <span id="typedText"></span><span class="blink-cursor">_</span>
+      </p>
+    </div>
+
+    <a href="#content-start" class="scroll-cta anim-fade" style="--d:2s">
+      <span class="scroll-label">SCROLL TO ENTER</span>
+      <span class="scroll-line"></span>
+    </a>
+  </header>
+
+  <!-- ======= PAGE CONTENT ======= -->
+  <div class="page-wrapper" id="content-start">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="index.html">Yuge / Ray</a>
+      </div>
+      <nav class="topbar-nav desktop-nav">
+        <a href="#content-start" class="topbar-link is-active" data-filter="all">All Projects</a>
+        <a href="#content-start" class="topbar-link" data-filter="digital">Digital Games</a>
+        <a href="#content-start" class="topbar-link" data-filter="board">Board Games</a>
+        <a href="#content-start" class="topbar-link" data-filter="other">Other Projects</a>
+        <a href="aboutMe.html" class="topbar-link">About</a>
+      </nav>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="#content-start" class="mobile-link is-active" data-filter="all">All Projects</a>
+        <a href="#content-start" class="mobile-link" data-filter="digital">Digital Games</a>
+        <a href="#content-start" class="mobile-link" data-filter="board">Board Games</a>
+        <a href="#content-start" class="mobile-link" data-filter="other">Other Projects</a>
+        <a href="aboutMe.html" class="mobile-link">About</a>
+      </nav>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <!-- MISSION BRIEFING -->
+      <section class="mission-briefing">
+        <div class="sec-header reveal">
+          <span class="sec-marker">▸</span>
+          <span class="sec-label">MISSION_BRIEFING</span>
+          <span class="sec-line"></span>
+        </div>
+
+        <div class="briefing-panel reveal">
+          <span class="panel-corner pc-tl" aria-hidden="true"></span>
+          <span class="panel-corner pc-tr" aria-hidden="true"></span>
+          <span class="panel-corner pc-bl" aria-hidden="true"></span>
+          <span class="panel-corner pc-br" aria-hidden="true"></span>
+
+          <div class="briefing-body">
+            <div class="brief-row">
+              <span class="brief-idx">01</span>
+              <p class="briefing-text">
+                Focusing on the architecture of <span class="highlight-tape">core mechanics</span>, I map clear rule sets, readable feedback loops, and escalating challenge curves so players can immediately understand what the system asks of them while still discovering deeper mastery over time.
+              </p>
+            </div>
+            <div class="brief-row">
+              <span class="brief-idx">02</span>
+              <p class="briefing-text">
+                Treating games as <span class="highlight-tape">dynamic ecosystems</span>, I connect economy, level flow, pacing, and narrative context into one responsive network, making each player decision create meaningful consequences and keeping the overall experience coherent, intentional, and emotionally grounded.
+              </p>
+            </div>
+          </div>
+
+          <div class="objective-bar">
+            <span class="obj-dot" aria-hidden="true"></span>
+            <span class="obj-tag">CURRENT OBJECTIVE</span>
+            <span class="obj-text">Build distinct experiences where every choice carries weight.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEVEL SELECT -->
+      <section class="level-select">
+        <div class="sec-header reveal">
+          <span class="sec-marker">▸</span>
+          <span class="sec-label">LEVEL_SELECT</span>
+          <span class="sec-line"></span>
+          <span class="sec-count">08 AVAILABLE</span>
+        </div>
+
+        <div class="project-grid">
+          <a href="projects/beneathTheGrey.html" class="project-card reveal" data-tilt data-cat="digital">
+            <span class="card-lv">01</span>
+            <div class="card-img"><img src="img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">UNITY VIDEO GAME</span><h3 class="card-name">BENEATH THE GREY</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/witchsWinter.html" class="project-card reveal" data-tilt data-cat="digital">
+            <span class="card-lv">02</span>
+            <div class="card-img"><img src="img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">UNITY VIDEO GAME</span><h3 class="card-name">WITCH'S WINTER</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/sandcastle.html" class="project-card reveal" data-tilt data-cat="digital">
+            <span class="card-lv">03</span>
+            <div class="card-img"><img src="img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">RECROOM CIRCUITS LEVEL</span><h3 class="card-name">THE STRANDED SANDCASTLE</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/portal2.html" class="project-card reveal" data-tilt data-cat="other">
+            <span class="card-lv">04</span>
+            <div class="card-img"><img src="img/redesign-portal/cover.png" alt="Portal 2 Level Redesign" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">REDESIGN GAME LEVEL</span><h3 class="card-name">PORTAL 2</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/tunnelVision.html" class="project-card reveal" data-tilt data-cat="other">
+            <span class="card-lv">05</span>
+            <div class="card-img"><img src="img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">3D ANIMATION</span><h3 class="card-name">TUNNEL VISION</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/theLost.html" class="project-card reveal" data-tilt data-cat="board">
+            <span class="card-lv">06</span>
+            <div class="card-img"><img src="img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">BOARD GAME</span><h3 class="card-name">THE LOST</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/purrSuation.html" class="project-card reveal" data-tilt data-cat="board">
+            <span class="card-lv">07</span>
+            <div class="card-img"><img src="img/purr-suation/cover.png" alt="Purr-suation" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">BOARD GAME</span><h3 class="card-name">PURR-SUATION</h3></div>
+            <div class="card-shine"></div>
+          </a>
+          <a href="projects/moonlightIsland.html" class="project-card reveal" data-tilt data-cat="board">
+            <span class="card-lv">08</span>
+            <div class="card-img"><img src="img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy"></div>
+            <div class="card-gradient"></div>
+            <div class="card-info"><span class="card-type">BOARD GAME</span><h3 class="card-name">MOONLIGHT ISLAND</h3></div>
+            <div class="card-shine"></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="page-footer reveal">
+        <a href="#hero" class="footer-top">↑ RETURN TO MENU</a>
+        <p class="footer-copy">© 2026 Yuge Wang · Crafted World by passion.</p>
+      </footer>
+    </main>
+  </div>
+
+<!-- ======= NON-MODULE SCRIPTS (menu, scroll, cards) ======= -->
+<script>
+(function () {
+  'use strict';
+
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+
+  /* --- hero coords --- */
+  var hero = document.getElementById('hero');
+  var coordsEl = document.getElementById('heroCoords');
+  if (hero && window.matchMedia('(pointer:fine)').matches) {
+    hero.addEventListener('mousemove', function (e) {
+      coordsEl.textContent = '[' +
+        String(Math.round(e.clientX)).padStart(4,'0') + ', ' +
+        String(Math.round(e.clientY)).padStart(4,'0') + ']';
+    });
+  }
+
+  /* --- typing --- */
+  var typedEl = document.getElementById('typedText');
+  var phrase  = 'every world is a bridge to the next';
+  var ci = 0;
+  function typeNext() {
+    if (ci < phrase.length) {
+      typedEl.textContent += phrase.charAt(ci++);
+      setTimeout(typeNext, 40 + Math.random() * 45);
+    }
+  }
+  setTimeout(typeNext, 1700);
+
+  /* --- menu hover dimming --- */
+  var menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(function (item) {
+    item.addEventListener('mouseenter', function () {
+      menuItems.forEach(function (o) { if (o !== item) o.classList.add('dimmed'); });
+    });
+    item.addEventListener('mouseleave', function () {
+      menuItems.forEach(function (o) { o.classList.remove('dimmed'); });
+    });
+  });
+
+  /* --- scroll reveal --- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+
+  /* --- scroll progress --- */
+  var bar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+  }, { passive: true });
+
+  /* --- project filter --- */
+  var allCards = document.querySelectorAll('.project-card');
+  var countEl  = document.querySelector('.sec-count');
+  var filterLinks = document.querySelectorAll('[data-filter]');
+  var currentFilter = 'all';
+
+  function applyFilter(cat) {
+    currentFilter = cat;
+    var visible = 0;
+    allCards.forEach(function (card) {
+      var match = (cat === 'all' || card.getAttribute('data-cat') === cat);
+      if (match) {
+        card.classList.remove('card-hidden');
+        visible++;
+      } else {
+        card.classList.add('card-hidden');
+      }
+    });
+    if (countEl) countEl.textContent = (visible < 10 ? '0' : '') + visible + ' AVAILABLE';
+
+    filterLinks.forEach(function (link) {
+      var isMatch = link.getAttribute('data-filter') === cat;
+      link.classList.toggle('is-active', isMatch);
+    });
+  }
+
+  filterLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var cat = link.getAttribute('data-filter');
+      if (cat) {
+        e.preventDefault();
+        applyFilter(cat);
+        var target = document.getElementById('content-start');
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        // close mobile menu if open
+        var mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+          window.toggleMenu();
+        }
+      }
+    });
+  });
+
+  /* --- restore filter from cross-page navigation --- */
+  var savedFilter = localStorage.getItem('filter');
+  if (savedFilter) {
+    localStorage.removeItem('filter');
+    applyFilter(savedFilter);
+  }
+
+  /* --- 3D tilt cards --- */
+  if (window.matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('[data-tilt]').forEach(function (card) {
+      var shine = card.querySelector('.card-shine');
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var x = e.clientX - r.left, y = e.clientY - r.top;
+        var cx = r.width / 2, cy = r.height / 2;
+        card.style.transform =
+          'perspective(800px) rotateX(' + ((y-cy)/cy*-5) +
+          'deg) rotateY(' + ((x-cx)/cx*5) + 'deg) scale(1.02)';
+        if (shine) {
+          shine.style.setProperty('--sx', (x/r.width*100)+'%');
+          shine.style.setProperty('--sy', (y/r.height*100)+'%');
+        }
+      });
+      card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+    });
+  }
+})();
+</script>
+
+<!-- ES module scripts (Three.js scene + strands) -->
+<script type="module" src="js/scene.js"></script>
+<script type="module" src="js/strands.js"></script>
+
+</body>
+</html>

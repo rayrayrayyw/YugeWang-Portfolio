@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tunnel Vision - Yuge Wang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/project-detail.css">
+</head>
+<body>
+
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="../index.html">Yuge / Ray</a>
+      </div>
+
+      <nav class="topbar-nav desktop-nav">
+        <a href="../index.html" class="topbar-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="topbar-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="topbar-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="topbar-link">Other Projects</a>
+        <a href="../aboutMe.html" class="topbar-link">About</a>
+      </nav>
+
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <!-- https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaExpanded and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-controls. Aria-expanded is telling screen reader this is for the boolean status of this hamburger, aria-controls is telling screen reader this controls "mobileMenu" id -->
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="../index.html" class="mobile-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="mobile-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="mobile-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="mobile-link">Other Projects</a>
+        <a href="../aboutMe.html" class="mobile-link">About</a>
+      </nav>
+    </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <header class="detail-header reveal">
+        <h1 class="detail-title">T U N N E L - V I S I O N</h1>
+        
+        <div class="strand-divider"></div>
+
+        <div class="project-specs">
+          <div class="spec-item">
+            <span class="spec-label">TYPE</span>
+            <span class="spec-value">3D Animation</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">ROLE</span>
+            <span class="spec-value">Website Management & 3D Modeling & Animation</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">TOOLS</span>
+            <span class="spec-value">Maya / Wix</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">YEAR</span>
+            <span class="spec-value">2025</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="media-highlight reveal">
+
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/15_ehhYS6Mo" 
+            title="YouTube video player" 
+            style="border: 0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="action-bar">
+          <a href="https://rayyugehehe.wixsite.com/tunnel-vision" target="_blank" class="external-btn">
+            LAUNCH PROJECT WEBSITE <span class="arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="detail-article">
+
+        <div class="content-block reveal">
+            <div class="block-label">/// PROJECT OVERVIEW</div>
+            <div class="block-text">
+            <p>
+                <strong>Tunnel Vision</strong> is an emotionally-driven 3D animated short about a young boy searching for his family in an abandoned world, guided only by a photograph. A robot companion keeps him company during his journey, and through their shared experiences, they form a close bond. The story explores themes of connection, loss, and rediscovery as the boy must choose between holding onto the memory of his past (symbolized by the photograph) and embracing the bond he forms in the present.
+            </p>
+            <p>
+                The animation's title references the medical condition of tunnel vision—"the loss of peripheral vision with retention of central vision, resulting in a constricted circular tunnel-like field of vision"—which metaphorically represents how the boy's singular focus on finding his family causes him to neglect things happening around him, until they come right at him. The narrative resolves with the discovery of an underground city, a direct result of the boy's decision to prioritize his relationship with the robot over the photograph.
+            </p>
+            <p>
+                The project aimed to create a heartfelt animation with expressive characters and detailed environmental storytelling. The team prioritized emotional weight and visual detail, resulting in polished character designs, environmental concepts, and a narrative that balances symbolic meaning with grounded storytelling.
+            </p>
+            </div>
+        </div>
+
+        <div class="content-block image-start reveal">
+            <div class="block-label">/// ROLE</div>
+            <div class="block-text">
+                <p>
+                    I served as <strong>Website Manager, 3D Modeler, and Animator</strong> for this project. My responsibilities spanned multiple production phases, from pre-production documentation to final animation delivery.
+                </p>
+                <p>
+                    <strong>Website Management:</strong> I designed and managed the project website, ensuring all team progress, concept art, storyboards, and final deliverables were accurately documented and accessible. The website served as our central hub for showcasing the project's development process and final animation.
+                </p>
+                <p>
+                    <strong>3D Modeling:</strong> I created several key 3D assets for the animation:
+                </p>
+                <p>
+                    • <strong>Robot Model:</strong> Complete character model including modeling, UV mapping, texturing, and rigging. The robot needed to be expressive and easy to animate, with the ability to switch between 2D facial expressions during animation.
+                </p>
+                <div class="full-image two-images">
+                  <div class="image-pair">
+                    <img src="../img/tunnel-vision/robot 1.png" alt="Robot model front view">
+                    <img src="../img/tunnel-vision/robot 2.png" alt="Robot model side view">
+                  </div>
+                  <span class="caption">Figure 01. Robot Model - Complete character model with modeling, UV mapping, texturing, and rigging</span>
+              </div>
+                <p>
+                    • <strong>Teddy Bear Model:</strong> Prop model with modeling and UV mapping, completed under the guidance of Mu Ran Wang (Nancy), who also provided the UV texture map.
+                </p>
+                <div class="full-image">
+                  <img src="../img/tunnel-vision/bear.png" alt="Teddy Bear model">
+                  <span class="caption">Figure 02. Teddy Bear Model - Prop model with modeling and UV mapping</span>
+              </div>
+                <p>
+                    <strong>Animation:</strong> I animated three key scenes that establish the story's emotional arc:
+                </p>
+                <p>
+                    • <strong>Scene 1:</strong> Overview of the abandoned city, where the Boy first meets the Robot—establishing their initial encounter and the world's desolate atmosphere.
+                </p>
+                <p>
+                    • <strong>Scene 3:</strong> Robot and Boy approach the cliff—building tension and setting up the conflict between the photograph and the robot companion.
+                </p>
+                <p>
+                    • <strong>Scene 4:</strong> Robot returns to the Boy, the photograph flies away, and the Boy runs after it with the Robot following—the emotional climax where the Boy must choose between his past and present connection.
+                </p>
+                <p>
+                    These scenes required careful attention to character expression, body language, and pacing to convey the emotional weight of the story. Working with custom rigs and blend shapes, I ensured smooth character movements and expressive gestures that supported the narrative's emotional beats.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block reveal">
+            <div class="block-label">/// REFLECTION</div>
+            <div class="block-text">
+            <p>
+                This project demonstrated the importance of <strong>time management and realistic scope assessment</strong> in 3D animation production. We initially planned for 9 scenes totaling approximately 5 minutes, but had to cut Scene 2 to manage workload—especially after a team member had to withdraw from the course. This experience taught me to identify non-essential elements early and prioritize core narrative beats.
+            </p>
+            <p>
+                The rendering phase revealed critical planning gaps. We underestimated the time required to render over 6,000 frames in 1080p resolution, compounded by frequent Maya crashes. Starting renders only 36 hours before the presentation forced us to reduce output to 720p—a compromise that, while maintaining quality, highlighted the need for <span class="highlight-bg">earlier render testing and buffer time</span> in production schedules.
+            </p>
+            <p>
+                Working across multiple roles—website management, modeling, and animation—strengthened my ability to <span class="highlight-bg">balance technical execution with creative vision</span>. The project's emphasis on emotional storytelling required every technical decision to serve the narrative, from character rigging that enabled expressive movement to environmental modeling that reinforced the desolate atmosphere. This experience reinforced that successful animation production requires both technical proficiency and narrative sensitivity.
+            </p>
+            </div>
+        </div>
+
+      </div> 
+
+      <div class="project-footer reveal">
+        <a href="../index.html" class="nav-btn prev-btn">← BACK TO ALL</a>
+        <!--<a href="#" class="nav-btn next-btn">NEXT PROJECT →</a>-->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Project Drawer -->
+  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-head">
+      <span class="drawer-title">▸ ALL PROJECTS</span>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-list">
+      <a href="beneathTheGrey.html" class="drawer-card">
+        <img src="../img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">BENEATH THE GREY</h4></div>
+      </a>
+      <a href="witchsWinter.html" class="drawer-card">
+        <img src="../img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">WITCH'S WINTER</h4></div>
+      </a>
+      <a href="sandcastle.html" class="drawer-card">
+        <img src="../img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">RECROOM CIRCUITS</span><h4 class="drawer-card-name">THE STRANDED SANDCASTLE</h4></div>
+      </a>
+      <a href="portal2.html" class="drawer-card">
+        <img src="../img/redesign-portal/cover.png" alt="Portal 2" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">REDESIGN GAME LEVEL</span><h4 class="drawer-card-name">PORTAL 2</h4></div>
+      </a>
+      <a href="tunnelVision.html" class="drawer-card is-current">
+        <img src="../img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">3D ANIMATION</span><h4 class="drawer-card-name">TUNNEL VISION</h4></div>
+        <span class="drawer-card-current">CURRENT</span>
+      </a>
+      <a href="theLost.html" class="drawer-card">
+        <img src="../img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">THE LOST</h4></div>
+      </a>
+      <a href="purrSuation.html" class="drawer-card">
+        <img src="../img/purr-suation/cover.png" alt="Purr-suation" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">PURR-SUATION</h4></div>
+      </a>
+      <a href="moonlightIsland.html" class="drawer-card">
+        <img src="../img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">MOONLIGHT ISLAND</h4></div>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+    }, { passive: true });
+  }
+  var tab = document.getElementById('drawerTab');
+  var panel = document.getElementById('drawerPanel');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeBtn = document.getElementById('drawerClose');
+  function openDrawer() { panel.classList.add('open'); overlay.classList.add('open'); tab.style.display = 'none'; }
+  function closeDrawer() { panel.classList.remove('open'); overlay.classList.remove('open'); tab.style.display = ''; }
+  if (tab) tab.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+})();
+</script>
+  <script src="../js/detail-interactions.js"></script>
+</body>
+</html>

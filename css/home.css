@@ -1,0 +1,803 @@
+/* =================================================================
+   HOME.CSS — Death Stranding Redesign
+   Palette: deep navy #06070c / amber #c89b6b / cool slate #8b9bb4
+   ================================================================= */
+
+/* ---- palette tokens ---- */
+:root {
+  --bg-deep:   #06070c;
+  --bg-panel:  #0c0e16;
+  --amber:     #c89b6b;
+  --amber-dim: #8c6e4a;
+  --amber-glow:#e0b880;
+  --text:      #c5c8d2;
+  --text-dim:  #5a5e6a;
+  --blue-fog:  #3a4660;
+  --accent:    #d0a870;
+}
+
+/* ---- BODY OVERRIDE ---- */
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ================================================================
+   TIMEFALL RAIN — two CSS layers
+   ================================================================ */
+.timefall {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9000;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 3px,
+    rgba(140, 170, 220, 0.04) 3px,
+    rgba(140, 170, 220, 0.04) 4px
+  );
+  background-size: 100% 8px;
+  animation: rainFall 0.6s linear infinite;
+}
+.timefall--slow {
+  background: repeating-linear-gradient(
+    177deg,
+    transparent,
+    transparent 5px,
+    rgba(120, 150, 200, 0.025) 5px,
+    rgba(120, 150, 200, 0.025) 6px
+  );
+  background-size: 100% 12px;
+  animation: rainFall 1.4s linear infinite;
+}
+@keyframes rainFall {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* film grain */
+.grain {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9001;
+  opacity: 0.04;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Three.js WebGL canvas container */
+.hero-webgl {
+  position: absolute; inset: 0;
+  z-index: 0;
+}
+.hero-webgl canvas {
+  display: block;
+  width: 100%; height: 100%;
+}
+
+/* Strand canvas overlay */
+.strand-canvas {
+  position: absolute; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- HUD corners ---- */
+.hud {
+  position: absolute;
+  z-index: 5;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--amber-dim);
+  opacity: 0.4;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.hud-tl { top: 24px; left: 28px; }
+.hud-tr { top: 24px; right: 28px; }
+.hud-bl { bottom: 24px; left: 28px; }
+.hud-br { bottom: 24px; right: 28px; font-variant-numeric: tabular-nums; }
+.hud-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  margin-right: 8px;
+  animation: pulse 2.5s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+/* ---- menu screen (centered overlay) ---- */
+.menu-screen {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  gap: 0;
+}
+
+/* ---- hero upper (headline) ---- */
+.hero-upper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+/* ---- HEADLINE with CHROMATIC ABERRATION ---- */
+.hero-headline {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 9vw, 6.5rem);
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: #e8dcc8;
+  margin: 0;
+  position: relative;
+  text-indent: 0.2em;
+}
+.hero-headline--2 {
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  margin-top: -0.05em;
+  color: #f0e4d0;
+}
+.chromatic::before,
+.chromatic::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  pointer-events: none;
+  white-space: pre;
+}
+.chromatic::before {
+  color: rgba(255, 70, 70, 0.45);
+  animation: chromaR 8s ease-in-out infinite alternate;
+}
+.chromatic::after {
+  color: rgba(70, 110, 255, 0.4);
+  animation: chromaB 8s ease-in-out infinite alternate-reverse;
+}
+@keyframes chromaR {
+  0%   { transform: translate(-1px, 0); }
+  50%  { transform: translate(3px, -1px); }
+  100% { transform: translate(-1px, 1px); }
+}
+@keyframes chromaB {
+  0%   { transform: translate(1px, 0); }
+  50%  { transform: translate(-3px, 1px); }
+  100% { transform: translate(1px, -1px); }
+}
+
+/* ---- credit line (name) ---- */
+.hero-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 6px;
+}
+.credit-name {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 500;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  letter-spacing: 0.35em;
+  color: var(--amber);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.credit-line {
+  display: block;
+  width: 60px; height: 1px;
+  background: var(--amber-dim);
+  opacity: 0.35;
+}
+
+/* ---- role ---- */
+.hero-role {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin: 0 0 36px;
+}
+
+/* ---- strand origin node ---- */
+.strand-origin {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+  margin-bottom: 14px;
+  box-shadow: 0 0 10px var(--amber), 0 0 28px rgba(200,155,110,0.25);
+}
+
+/* ---- MAIN MENU (vertical game menu) ---- */
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 36px;
+}
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 9px 32px;
+  text-decoration: none;
+  color: var(--text);
+  transition: color .25s, opacity .25s;
+  cursor: pointer;
+}
+.menu-item .mi-label {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 500;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  letter-spacing: 0.22em;
+}
+.menu-item .mi-desc {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .3s, transform .3s;
+}
+.menu-item:hover .mi-desc,
+.menu-item:focus .mi-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+.menu-item:hover {
+  color: var(--amber-glow);
+}
+.menu-item.dimmed {
+  opacity: 0.15;
+}
+
+/* flavor text */
+.hero-flavor {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--amber-dim);
+  letter-spacing: 0.1em;
+  margin: 0;
+  opacity: 0.55;
+  font-style: italic;
+}
+.blink-cursor {
+  animation: blink 1s step-end infinite;
+  font-style: normal;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---- scroll cta ---- */
+.scroll-cta {
+  position: absolute;
+  bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--amber-dim);
+  gap: 8px;
+}
+.scroll-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: var(--amber-dim);
+  opacity: 0.4;
+  animation: scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { scaleY: 1; opacity: 0.4; }
+  50%      { scaleY: 0.6; opacity: 0.7; }
+}
+
+/* ---- entry animations ---- */
+.anim-fade {
+  opacity: 0;
+  translate: 0 16px;
+  animation: fadeUp .8s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes fadeUp {
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* ================================================================
+   PAGE WRAPPER / CONTENT AREA
+   ================================================================ */
+.page-wrapper {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-deep);
+  background-color: var(--bg-deep);
+}
+
+/* override main.css topbar light theme */
+.topbar-link:hover,
+.topbar-link.is-active {
+  text-decoration: none;
+}
+.hamburger span {
+  background-color: var(--amber-dim);
+}
+.close-btn {
+  color: var(--amber);
+}
+.mobile-menu-overlay {
+  background-color: rgba(6, 7, 12, 0.96);
+}
+.mobile-link:hover,
+.mobile-link.is-active {
+  text-decoration: none;
+}
+
+/* ---- topbar ---- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(20px, 4vw, 48px);
+  background: rgba(6, 7, 12, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200, 155, 107, 0.06);
+}
+.topbar-logo a {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 500;
+  color: var(--amber);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+}
+.status-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: pulse 2.5s ease infinite;
+}
+.topbar-link {
+  font-family: 'Courier New', monospace;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 0;
+  transition: color .2s;
+}
+.topbar-link:hover, .topbar-link.is-active {
+  color: var(--amber);
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--amber-dim), var(--amber-glow));
+  z-index: 200;
+  transition: width .1s linear;
+}
+
+/* ---- main content ---- */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px clamp(20px, 4vw, 48px) 40px;
+}
+
+/* ---- reveal scroll animations ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================================================
+   MISSION BRIEFING
+   ================================================================ */
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.sec-marker {
+  color: var(--amber);
+  font-size: 0.9rem;
+}
+.sec-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--amber-dim);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sec-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--amber-dim), transparent);
+  opacity: 0.25;
+}
+.sec-count {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+}
+
+/* briefing panel */
+.briefing-panel {
+  position: relative;
+  border: 1px solid rgba(200, 155, 107, 0.1);
+  background: rgba(12, 14, 22, 0.6);
+  backdrop-filter: blur(6px);
+  padding: 36px;
+  margin-bottom: 48px;
+}
+.panel-corner {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-color: var(--amber-dim);
+  border-style: solid;
+  opacity: 0.4;
+}
+.pc-tl { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.pc-tr { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+.pc-bl { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+.pc-br { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+.briefing-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.brief-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.brief-idx {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+.briefing-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+.highlight-tape {
+  color: var(--amber-glow);
+  border-bottom: 1px solid rgba(200, 155, 107, 0.25);
+  padding-bottom: 1px;
+}
+
+.objective-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(200, 155, 107, 0.08);
+}
+.obj-dot {
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2.5s ease infinite;
+}
+.obj-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--amber-dim);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.obj-text {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* ================================================================
+   PROJECT GRID (Level Select)
+   ================================================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.project-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 16/9;
+  text-decoration: none;
+  color: var(--text);
+  transform-style: preserve-3d;
+  transition: transform .35s ease, box-shadow .35s ease, opacity .4s ease, scale .4s ease;
+  border: 1px solid rgba(200, 155, 107, 0.06);
+}
+.project-card.card-hidden {
+  opacity: 0;
+  scale: 0.95;
+  pointer-events: none;
+  position: absolute;
+  width: 0; height: 0;
+  overflow: hidden;
+  margin: 0; padding: 0; border: 0;
+}
+.project-card:hover {
+  box-shadow:
+    0 0 20px rgba(200, 155, 107, 0.1),
+    0 8px 32px rgba(0,0,0,0.4);
+}
+
+.card-lv {
+  position: absolute;
+  top: 12px; left: 14px;
+  z-index: 3;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--amber-dim);
+  opacity: 0.7;
+}
+
+.card-img {
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+.card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease, filter .6s ease;
+  filter: saturate(0.35) brightness(0.65);
+}
+.project-card:hover .card-img img {
+  transform: scale(1.06);
+  filter: saturate(0.7) brightness(0.8);
+}
+
+.card-gradient {
+  position: absolute; inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    0deg,
+    rgba(6, 7, 12, 0.95) 0%,
+    rgba(6, 7, 12, 0.3) 50%,
+    transparent 100%
+  );
+}
+
+.card-info {
+  position: absolute;
+  bottom: 18px; left: 18px; right: 18px;
+  z-index: 2;
+}
+.card-type {
+  font-family: 'Courier New', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: var(--amber-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+.card-name {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  color: var(--text);
+  margin: 0;
+  transition: color .3s;
+}
+.project-card:hover .card-name {
+  color: var(--amber-glow);
+}
+
+.card-shine {
+  position: absolute; inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--sx, 50%) var(--sy, 50%),
+    rgba(200,155,107,0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity .3s;
+}
+.project-card:hover .card-shine { opacity: 1; }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.page-footer {
+  text-align: center;
+  padding: 60px 0 40px;
+  border-top: 1px solid rgba(200, 155, 107, 0.06);
+  margin-top: 60px;
+}
+.footer-top {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--amber-dim);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-top:hover { color: var(--amber); }
+.footer-copy {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  margin-top: 12px;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 768px) {
+  .desktop-nav { display: none; }
+  .hud { display: none; }
+
+  .hero-headline {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+  .hero-headline--2 {
+    font-size: clamp(2.5rem, 13vw, 4.5rem);
+  }
+  .credit-line { width: 28px; }
+  .hero-credit { gap: 14px; }
+  .hero-role { margin-bottom: 24px; }
+
+  .menu-item { padding: 7px 16px; }
+  .menu-item .mi-label { font-size: 0.75rem; }
+  .menu-item .mi-desc { display: none; }
+
+  .briefing-panel { padding: 24px; }
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: clamp(1.6rem, 10vw, 2.5rem);
+  }
+  .hero-headline--2 {
+    font-size: clamp(2rem, 13vw, 3.2rem);
+  }
+  .credit-line { width: 18px; }
+  .main-content { padding: 40px 16px 24px; }
+}
+
+/* ================================================================
+   MOBILE MENU OVERLAY
+   ================================================================ */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(6, 7, 12, 0.96);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s;
+}
+.mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.close-btn {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: none;
+  border: none;
+  color: var(--amber);
+  font-size: 2rem;
+  cursor: pointer;
+}
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.mobile-link {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  color: var(--text);
+  transition: color .2s;
+}
+.mobile-link:hover, .mobile-link.is-active {
+  color: var(--amber);
+}
+
+/* hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--amber-dim);
+  transition: transform .2s, opacity .2s;
+}
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+}

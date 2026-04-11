@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beneath the Grey - Yuge Wang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/project-detail.css">
+</head>
+<body>
+
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="../index.html">Yuge / Ray</a>
+      </div>
+
+      <nav class="topbar-nav desktop-nav">
+        <a href="../index.html" class="topbar-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="topbar-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="topbar-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="topbar-link">Other Projects</a>
+        <a href="../aboutMe.html" class="topbar-link">About</a>
+      </nav>
+
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <!-- https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaExpanded and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-controls. Aria-expanded is telling screen reader this is for the boolean status of this hamburger, aria-controls is telling screen reader this controls "mobileMenu" id -->
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="../index.html" class="mobile-link">All Projects</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','digital')" class="mobile-link">Digital Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','board')" class="mobile-link">Board Games</a>
+        <a href="../index.html#content-start" onclick="localStorage.setItem('filter','other')" class="mobile-link">Other Projects</a>
+        <a href="../aboutMe.html" class="mobile-link">About</a>
+      </nav>
+    </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <header class="detail-header reveal">
+        <h1 class="detail-title">B E N E A T H - T H E - G R E Y</h1>
+        
+        <div class="strand-divider"></div>
+
+        <div class="project-specs">
+          <div class="spec-item">
+            <span class="spec-label">TYPE</span>
+            <span class="spec-value">Unity Video Game</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">ROLE</span>
+            <span class="spec-value">Project Manager & Programmer & Game Designer & Writer</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">TOOLS</span>
+            <span class="spec-value">Unity</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">YEAR</span>
+            <span class="spec-value">2026</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="media-highlight reveal">
+
+        <div class="image-wrapper small-image">
+          <img src="../img/beneathTheGrey/Cover.png" alt="Beneath the Grey - Game Cover">
+        </div>
+
+      </div>
+
+      <div class="detail-article">
+
+        <div class="content-block reveal">
+            <div class="block-label">/// COMING SOON</div>
+            <div class="block-text">
+            <p>
+                This project is currently in development and is expected to be completed in <strong>April 2026</strong>.
+            </p>
+            <p>
+                More details will be available upon project completion.
+            </p>
+            </div>
+        </div>
+
+      </div> 
+
+      <div class="project-footer reveal">
+        <a href="../index.html" class="nav-btn prev-btn">← BACK TO ALL</a>
+        <!--<a href="#" class="nav-btn next-btn">NEXT PROJECT →</a>-->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Project Drawer -->
+  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-head">
+      <span class="drawer-title">▸ ALL PROJECTS</span>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-list">
+      <a href="beneathTheGrey.html" class="drawer-card is-current">
+        <img src="../img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">BENEATH THE GREY</h4></div>
+        <span class="drawer-card-current">CURRENT</span>
+      </a>
+      <a href="witchsWinter.html" class="drawer-card">
+        <img src="../img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">WITCH'S WINTER</h4></div>
+      </a>
+      <a href="sandcastle.html" class="drawer-card">
+        <img src="../img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">RECROOM CIRCUITS</span><h4 class="drawer-card-name">THE STRANDED SANDCASTLE</h4></div>
+      </a>
+      <a href="portal2.html" class="drawer-card">
+        <img src="../img/redesign-portal/cover.png" alt="Portal 2" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">REDESIGN GAME LEVEL</span><h4 class="drawer-card-name">PORTAL 2</h4></div>
+      </a>
+      <a href="tunnelVision.html" class="drawer-card">
+        <img src="../img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">3D ANIMATION</span><h4 class="drawer-card-name">TUNNEL VISION</h4></div>
+      </a>
+      <a href="theLost.html" class="drawer-card">
+        <img src="../img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">THE LOST</h4></div>
+      </a>
+      <a href="purrSuation.html" class="drawer-card">
+        <img src="../img/purr-suation/cover.png" alt="Purr-suation" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">PURR-SUATION</h4></div>
+      </a>
+      <a href="moonlightIsland.html" class="drawer-card">
+        <img src="../img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">MOONLIGHT ISLAND</h4></div>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+    }, { passive: true });
+  }
+  var tab = document.getElementById('drawerTab');
+  var panel = document.getElementById('drawerPanel');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeBtn = document.getElementById('drawerClose');
+  function openDrawer() { panel.classList.add('open'); overlay.classList.add('open'); tab.style.display = 'none'; }
+  function closeDrawer() { panel.classList.remove('open'); overlay.classList.remove('open'); tab.style.display = ''; }
+  if (tab) tab.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+})();
+</script>
+  <script src="../js/detail-interactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+/* Sackers Gothic */
+@font-face { font-family: 'SackersGothic'; src: url('../font/Sackers Gothic Light.woff2') format('woff2'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'SackersGothic'; src: url('../font/Sackers Gothic Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'SackersGothic'; src: url('../font/Sackers Gothic Heavy.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+
+/* SST */
+@font-face { font-family: 'SST'; src: url('../font/SSTLight.TTF') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'SST'; src: url('../font/SSTRg.TTF') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'SSTCondensed'; src: url('../font/SSTRgCn.TTF') format('truetype'); font-weight: 400; font-style: normal; }
+
+
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
+
+*:focus-visible {
+  outline: 2px solid #333; 
+  outline-offset: 6px; 
+  border-radius: 2px;
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  min-height: 100%; 
+}
+
+body {
+  font-family: 'SST', sans-serif;
+  background-color: #fcfcfc;
+  color: #333333;
+}
+
+img { 
+  max-width: 100%; 
+  display: block; 
+}
+
+a { 
+  text-decoration: none; 
+}
+
+body.no-scroll { 
+  overflow: hidden; 
+}
+
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: 'SackersGothic', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.page-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.main-content {
+  padding: 0 5rem 5rem;
+}
+
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 5rem; 
+  background-color: #fcfcfc;
+}
+
+.topbar-logo a {
+  font-family: 'SackersGothic', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+  color: #333333;
+}
+
+.topbar-logo a:hover {
+  color: #111111; 
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 2rem; 
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.topbar-link {
+  font-family: 'SackersGothic', sans-serif; 
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+  color: #333333;
+}
+.topbar-link:hover { 
+  color: #cad467; 
+  text-decoration: line-through; 
+}
+
+.topbar-link.is-active { 
+  color: #cad467; 
+  font-weight: 600; 
+  text-decoration: line-through; 
+}
+
+.hamburger {
+  display: none; 
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1.875rem;
+  height: 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block; 
+  width: 100%; 
+  height: 0.125rem;
+  background-color: #333; 
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 1000;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  opacity: 0; 
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1; 
+  visibility: visible; 
+}
+
+.close-btn {
+  position: absolute; 
+  top: 1.875rem; 
+  right: 2.5rem;
+  font-family: 'SST', sans-serif; 
+  font-size: 40px;
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  color: #333; 
+  line-height: 1;
+}
+
+
+.mobile-nav-links {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 2rem;
+}
+
+.mobile-link {
+  font-family: 'SackersGothic', sans-serif; 
+  font-size: 24px;
+  color: #333; 
+  text-transform: uppercase; 
+  position: relative; 
+  transition: color 0.3s ease;
+}
+
+.mobile-link:hover, .mobile-link.is-active {
+  color: #cad467; 
+  text-decoration: 
+  line-through; font-weight: 600;
+}
+
+
+.project-section { 
+  padding-top: 0; 
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.project-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.project-imgbox { 
+  position: relative; 
+  padding-bottom: 56.25%; 
+}
+
+.project-imgbox img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  transition: transform 0.6s ease-out, filter 0.4s ease;
+  filter: grayscale(0);
+}
+
+.project-item::after {
+  content: ""; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: #000000; 
+  opacity: 0; 
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+
+.project-info {
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 80%; 
+  text-align: center;
+  z-index: 2; 
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.project-name {
+  margin: 0 0 0.75rem;
+  font-family: 'SackersGothic', sans-serif; 
+  font-size: 24px;
+  font-weight: 700; 
+  line-height: 1.2; 
+  color: #ffffff; 
+  letter-spacing: 0.125rem;
+}
+
+.project-type {
+  margin: 0;
+  font-family: 'SSTCondensed', sans-serif; 
+  font-size: 13px;
+  line-height: 1.4; 
+  color: #e4f348;
+  text-decoration: line-through; 
+  letter-spacing: 0.1625rem; 
+  text-transform: uppercase;
+}
+
+.project-item:hover .project-imgbox img { 
+  transform: scale(1.08); 
+  filter: grayscale(100%); 
+}
+
+.project-item:hover::after { 
+  opacity: 0.85; 
+}
+
+.project-item:hover .project-info { 
+  opacity: 1; 
+  transform: translate(-50%, -50%); 
+}
+
+.back-top {
+  margin: 5rem auto 0;
+  text-align: center;
+  font-family: 'SST', sans-serif; 
+  font-size: 16px;
+  font-weight: 900; 
+  line-height: 18px; 
+  color: #cad467;
+}
+
+.back-top a:hover { 
+  color: #333333; 
+}
+
+
+
+@media (max-width: 78.125rem) {
+  .desktop-nav { 
+    display: none; 
+  }
+  .hamburger { 
+    display: flex; 
+  }
+}
+
+@media (max-width: 64.375rem) {
+  
+  .main-content {
+    padding: 1.25rem 1.25rem 3.75rem; 
+  }
+
+  .topbar {
+    padding: 1.875rem 2.5rem;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; 
+  }
+  
+  .project-info { 
+    width: 90%; 
+  }
+}
+
+
+@media (max-width: 33.75rem) {
+  
+  .topbar { 
+    padding: 1.25rem 1.25rem; 
+  }
+
+  .main-content { 
+    padding-bottom: 2.5rem; 
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .mobile-link { 
+    font-size: 20px; 
+  }
+  
+  .close-btn { 
+    top: 1.25rem; 
+    right: 1.25rem; 
+  }
+}

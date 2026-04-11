@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About — Yuge Wang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/aboutMe.css">
+</head>
+<body>
+
+  <!-- timefall + grain (same as index) -->
+  <div class="timefall" aria-hidden="true"></div>
+  <div class="timefall timefall--slow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="status-dot" aria-hidden="true"></span>
+        <a href="index.html">Yuge / Ray</a>
+      </div>
+      <nav class="topbar-nav desktop-nav">
+        <a href="index.html" class="topbar-link">All Projects</a>
+        <a href="index.html#content-start" class="topbar-link" onclick="localStorage.setItem('filter','digital')">Digital Games</a>
+        <a href="index.html#content-start" class="topbar-link" onclick="localStorage.setItem('filter','board')">Board Games</a>
+        <a href="index.html#content-start" class="topbar-link" onclick="localStorage.setItem('filter','other')">Other Projects</a>
+        <a href="aboutMe.html" class="topbar-link is-active">About</a>
+      </nav>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+      <button class="close-btn" onclick="toggleMenu()">×</button>
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-link">All Projects</a>
+        <a href="index.html#content-start" class="mobile-link" onclick="localStorage.setItem('filter','digital')">Digital Games</a>
+        <a href="index.html#content-start" class="mobile-link" onclick="localStorage.setItem('filter','board')">Board Games</a>
+        <a href="index.html#content-start" class="mobile-link" onclick="localStorage.setItem('filter','other')">Other Projects</a>
+        <a href="aboutMe.html" class="mobile-link is-active">About</a>
+      </nav>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header reveal">
+        <div class="sec-header">
+          <span class="sec-marker">▸</span>
+          <span class="sec-label">PORTER_PROFILE</span>
+          <span class="sec-line"></span>
+          <span class="sec-status">STRAND.CONNECTED</span>
+        </div>
+      </div>
+
+      <!-- PROFILE SECTION -->
+      <section class="profile-section">
+        <div class="profile-grid">
+
+          <!-- LEFT: ID CARD -->
+          <div class="id-card reveal" id="idCard">
+            <div class="id-photo-wrap">
+              <img src="img/bio/me.png" alt="Yuge Wang" class="id-photo" loading="lazy">
+              <div class="id-scanline" aria-hidden="true"></div>
+              <div class="id-overlay">
+                <span class="id-tag">ID: YUGE / RAY</span>
+              </div>
+            </div>
+
+            <div class="id-data">
+              <div class="data-row">
+                <span class="data-label">ROLE</span>
+                <span class="data-value">GAME DESIGNER</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">FOCUS</span>
+                <span class="data-value">SYSTEMS THINKING</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">LOC</span>
+                <span class="data-value">VANCOUVER</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">STATUS</span>
+                <span class="data-value value-online"><span class="online-dot"></span>ACTIVE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: BIO -->
+          <div class="bio-area">
+
+            <h1 class="bio-title reveal">
+              <span class="bio-title-line1">I AM</span>
+              <span class="bio-title-name chromatic" data-text="YUGE WANG">YUGE WANG</span>
+            </h1>
+
+            <h2 class="bio-subtitle reveal">
+              DESIGNING RULES. SHAPING SPACES. TUNING SYSTEMS.
+            </h2>
+
+            <div class="strand-divider reveal" aria-hidden="true"></div>
+
+            <div class="bio-text reveal">
+              <p>
+                I am an <strong>Interactive Arts & Technology student</strong> specializing in game design, systems thinking, and interactive world-building.
+              </p>
+              <p>
+                My primary focus is designing and refining <span class="highlight-tape">core gameplay mechanics</span> — the rules, loops, and decision structures that define how players think and act within a game.
+              </p>
+              <p>
+                I enjoy analyzing player motivations, shaping decision-making spaces, and tuning systems so every choice feels <strong>intentional and impactful</strong>. I approach games as <span class="highlight-tape">dynamic ecosystems</span> where mechanics, numbers, and narrative meaning work together.
+              </p>
+              <p>
+                My goal is to create experiences that feel coherent, intuitive, and deeply rewarding for players.
+              </p>
+            </div>
+
+            <div class="bio-tags reveal">
+              <span class="tag">GAME DESIGN</span>
+              <span class="tag">SYSTEMS THINKING</span>
+              <span class="tag">WORLD BUILDING</span>
+              <span class="tag">MECHANICS</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section class="tech-section">
+        <div class="sec-header reveal">
+          <span class="sec-marker">▸</span>
+          <span class="sec-label">EQUIPMENT_LOADOUT</span>
+          <span class="sec-line"></span>
+          <span class="sec-status">6 MODULES</span>
+        </div>
+
+        <div class="loadout-grid">
+
+          <div class="loadout-card reveal" data-level="85">
+            <div class="lc-accent"></div>
+            <span class="lc-idx">01</span>
+            <div class="lc-ring" style="--pct:85">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="lc-ring-bg"/>
+                <circle cx="40" cy="40" r="34" class="lc-ring-fill"/>
+              </svg>
+              <span class="lc-pct">0</span>
+            </div>
+            <h3 class="lc-name">UNITY</h3>
+            <span class="lc-cat">ENGINE</span>
+          </div>
+
+          <div class="loadout-card reveal" data-level="70">
+            <div class="lc-accent"></div>
+            <span class="lc-idx">02</span>
+            <div class="lc-ring" style="--pct:70">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="lc-ring-bg"/>
+                <circle cx="40" cy="40" r="34" class="lc-ring-fill"/>
+              </svg>
+              <span class="lc-pct">0</span>
+            </div>
+            <h3 class="lc-name">MAYA</h3>
+            <span class="lc-cat">3D MODELING</span>
+          </div>
+
+          <div class="loadout-card reveal" data-level="90">
+            <div class="lc-accent"></div>
+            <span class="lc-idx">03</span>
+            <div class="lc-ring" style="--pct:90">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="lc-ring-bg"/>
+                <circle cx="40" cy="40" r="34" class="lc-ring-fill"/>
+              </svg>
+              <span class="lc-pct">0</span>
+            </div>
+            <h3 class="lc-name">REC ROOM</h3>
+            <span class="lc-cat">CIRCUITS</span>
+          </div>
+
+          <div class="loadout-card reveal" data-level="80">
+            <div class="lc-accent"></div>
+            <span class="lc-idx">04</span>
+            <div class="lc-ring" style="--pct:80">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="lc-ring-bg"/>
+                <circle cx="40" cy="40" r="34" class="lc-ring-fill"/>
+              </svg>
+              <span class="lc-pct">0</span>
+            </div>
+            <h3 class="lc-name">HTML / CSS</h3>
+            <span class="lc-cat">WEB</span>
+          </div>
+
+          <div class="loadout-card reveal" data-level="60">
+            <div class="lc-accent"></div>
+            <span class="lc-idx">05</span>
+            <div class="lc-ring" style="--pct:60">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="lc-ring-bg"/>
+                <circle cx="40" cy="40" r="34" class="lc-ring-fill"/>
+              </svg>
+              <span class="lc-pct">0</span>
+            </div>
+            <h3 class="lc-name">JAVASCRIPT</h3>
+            <span class="lc-cat">CODE</span>
+          </div>
+
+          <div class="loadout-card reveal" data-level="75">
+            <div class="lc-accent"></div>
+            <span class="lc-idx">06</span>
+            <div class="lc-ring" style="--pct:75">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" class="lc-ring-bg"/>
+                <circle cx="40" cy="40" r="34" class="lc-ring-fill"/>
+              </svg>
+              <span class="lc-pct">0</span>
+            </div>
+            <h3 class="lc-name">GITHUB</h3>
+            <span class="lc-cat">VERSION CTRL</span>
+          </div>
+
+        </div>
+      </section>
+
+      <footer class="page-footer reveal">
+        <a href="#top" class="footer-top">↑ RETURN TO TOP</a>
+        <p class="footer-copy">© 2025 Yuge Wang · Crafted by hand.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Project Drawer -->
+  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-head">
+      <span class="drawer-title">▸ ALL PROJECTS</span>
+      <button class="drawer-close" id="drawerClose">×</button>
+    </div>
+    <div class="drawer-list">
+      <a href="projects/beneathTheGrey.html" class="drawer-card">
+        <img src="img/beneathTheGrey/Cover.png" alt="Beneath the Grey" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">BENEATH THE GREY</h4></div>
+      </a>
+      <a href="projects/witchsWinter.html" class="drawer-card">
+        <img src="img/witch'sWinter/cover.png" alt="Witch's Winter" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">UNITY VIDEO GAME</span><h4 class="drawer-card-name">WITCH'S WINTER</h4></div>
+      </a>
+      <a href="projects/sandcastle.html" class="drawer-card">
+        <img src="img/sand-castle/cover.png" alt="The Stranded Sandcastle" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">RECROOM CIRCUITS</span><h4 class="drawer-card-name">THE STRANDED SANDCASTLE</h4></div>
+      </a>
+      <a href="projects/portal2.html" class="drawer-card">
+        <img src="img/redesign-portal/cover.png" alt="Portal 2" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">REDESIGN GAME LEVEL</span><h4 class="drawer-card-name">PORTAL 2</h4></div>
+      </a>
+      <a href="projects/tunnelVision.html" class="drawer-card">
+        <img src="img/tunnel-vision/cover.png" alt="Tunnel Vision" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">3D ANIMATION</span><h4 class="drawer-card-name">TUNNEL VISION</h4></div>
+      </a>
+      <a href="projects/theLost.html" class="drawer-card">
+        <img src="img/the-lost/thelost-poster.png" alt="The Lost" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">THE LOST</h4></div>
+      </a>
+      <a href="projects/purrSuation.html" class="drawer-card">
+        <img src="img/purr-suation/cover.png" alt="Purr-suation" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">PURR-SUATION</h4></div>
+      </a>
+      <a href="projects/moonlightIsland.html" class="drawer-card">
+        <img src="img/moonlight-island/cover.png" alt="Moonlight Island" loading="lazy">
+        <div class="drawer-card-gradient"></div>
+        <div class="drawer-card-info"><span class="drawer-card-type">BOARD GAME</span><h4 class="drawer-card-name">MOONLIGHT ISLAND</h4></div>
+      </a>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  window.toggleMenu = function () {
+    var menu = document.getElementById('mobileMenu');
+    var btn  = document.querySelector('.hamburger');
+    var open = menu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+    btn.setAttribute('aria-expanded', open);
+  };
+
+  /* --- scroll reveal --- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('revealed'); io.unobserve(en.target); }
+      });
+    }, { threshold: .1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+
+  /* --- scroll progress --- */
+  var bar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+  }, { passive: true });
+
+  /* --- loadout ring animation on reveal --- */
+  var loadoutCards = document.querySelectorAll('.loadout-card');
+  if ('IntersectionObserver' in window) {
+    var tio = new IntersectionObserver(function (ens) {
+      ens.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('ring-animate');
+          var target = parseInt(en.target.getAttribute('data-level'), 10) || 0;
+          var pctEl = en.target.querySelector('.lc-pct');
+          if (pctEl && !pctEl.dataset.done) {
+            pctEl.dataset.done = '1';
+            var cur = 0;
+            var step = Math.max(1, Math.round(target / 40));
+            var timer = setInterval(function () {
+              cur += step;
+              if (cur >= target) { cur = target; clearInterval(timer); }
+              pctEl.textContent = cur;
+            }, 25);
+          }
+          tio.unobserve(en.target);
+        }
+      });
+    }, { threshold: .2 });
+    loadoutCards.forEach(function (el) { tio.observe(el); });
+  }
+
+  /* --- ID card tilt on mouse --- */
+  var idCard = document.getElementById('idCard');
+  if (idCard && window.matchMedia('(pointer:fine)').matches) {
+    idCard.addEventListener('mousemove', function (e) {
+      var r = idCard.getBoundingClientRect();
+      var x = e.clientX - r.left, y = e.clientY - r.top;
+      var cx = r.width / 2, cy = r.height / 2;
+      idCard.style.transform =
+        'perspective(800px) rotateX(' + ((y - cy) / cy * -4) +
+        'deg) rotateY(' + ((x - cx) / cx * 4) + 'deg)';
+    });
+    idCard.addEventListener('mouseleave', function () {
+      idCard.style.transform = '';
+    });
+  }
+
+  /* --- tag scramble effect on hover --- */
+  var tags = document.querySelectorAll('.tag');
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  tags.forEach(function (tag) {
+    var original = tag.textContent;
+    tag.addEventListener('mouseenter', function () {
+      var iterations = 0;
+      var interval = setInterval(function () {
+        tag.textContent = original.split('').map(function (ch, i) {
+          if (i < iterations) return original[i];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        iterations += 1;
+        if (iterations > original.length) {
+          clearInterval(interval);
+          tag.textContent = original;
+        }
+      }, 30);
+    });
+  });
+
+  /* --- drawer toggle --- */
+  var drawerTab = document.getElementById('drawerTab');
+  var drawerPanel = document.getElementById('drawerPanel');
+  var drawerOverlay = document.getElementById('drawerOverlay');
+  var drawerClose = document.getElementById('drawerClose');
+  function openDrawer() { drawerPanel.classList.add('open'); drawerOverlay.classList.add('open'); drawerTab.style.display = 'none'; }
+  function closeDrawer() { drawerPanel.classList.remove('open'); drawerOverlay.classList.remove('open'); drawerTab.style.display = ''; }
+  if (drawerTab) drawerTab.addEventListener('click', openDrawer);
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+  /* --- cursor glow --- */
+  var glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+  var glowOn = false;
+  document.addEventListener('mousemove', function (e) {
+    if (!glowOn) { glow.classList.add('active'); glowOn = true; }
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mouseleave', function () {
+    glow.classList.remove('active'); glowOn = false;
+  });
+
+  /* --- magnetic tags (subtle pull toward cursor) --- */
+  tags.forEach(function (tag) {
+    tag.addEventListener('mousemove', function (e) {
+      var r = tag.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2);
+      var dy = e.clientY - (r.top + r.height / 2);
+      tag.style.transform = 'translate(' + (dx * 0.15) + 'px,' + (dy * 0.15) + 'px)';
+    });
+    tag.addEventListener('mouseleave', function () {
+      tag.style.transform = '';
+    });
+  });
+
+  /* (tech counter is now handled by loadout ring animation above) */
+
+  /* --- periodic glitch burst on title --- */
+  var titleName = document.querySelector('.bio-title-name');
+  if (titleName) {
+    setInterval(function () {
+      titleName.classList.add('glitch-burst');
+      setTimeout(function () { titleName.classList.remove('glitch-burst'); }, 300);
+    }, 6000 + Math.random() * 4000);
+  }
+
+  /* --- data row value type-in on reveal --- */
+  var dataValues = document.querySelectorAll('.data-value');
+  var valueObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var final = el.textContent;
+      if (el.dataset.typed) return;
+      el.dataset.typed = '1';
+      el.textContent = '';
+      var i = 0;
+      var timer = setInterval(function () {
+        i++;
+        el.textContent = final.substring(0, i);
+        if (i >= final.length) clearInterval(timer);
+      }, 40);
+      valueObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  dataValues.forEach(function (v) { valueObserver.observe(v); });
+
+  /* --- bio text highlight glow on scroll --- */
+  var highlights = document.querySelectorAll('.highlight-tape');
+  var hlObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.background = 'linear-gradient(0deg, rgba(200,155,107,0.1) 0%, transparent 60%)';
+        entry.target.style.transition = 'background .6s ease';
+      }
+    });
+  }, { threshold: 0.8 });
+  highlights.forEach(function (h) { hlObserver.observe(h); });
+
+})();
+</script>
+
+</body>
+</html>
