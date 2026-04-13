@@ -20,17 +20,31 @@ body {
   overflow-x: hidden;
 }
 
-/* ---- timefall (shared) ---- */
+/* ---- void / beach haze (shared; not rain) ---- */
 .timefall {
   position: fixed; inset: 0; pointer-events: none; z-index: 9000;
-  background: repeating-linear-gradient(180deg,transparent,transparent 3px,rgba(140,170,220,0.04) 3px,rgba(140,170,220,0.04) 4px);
-  background-size: 100% 8px; animation: rainFall 0.6s linear infinite;
+  background: linear-gradient(
+    188deg,
+    rgba(6, 10, 20, 0.32) 0%,
+    transparent 38%,
+    rgba(10, 16, 30, 0.2) 52%,
+    transparent 72%,
+    rgba(8, 12, 22, 0.26) 100%
+  );
+  background-size: 100% 220%;
+  animation: voidShelfDrift 26s ease-in-out infinite alternate;
 }
 .timefall--slow {
-  background: repeating-linear-gradient(177deg,transparent,transparent 5px,rgba(120,150,200,0.025) 5px,rgba(120,150,200,0.025) 6px);
-  background-size: 100% 12px; animation: rainFall 1.4s linear infinite;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  background:
+    radial-gradient(ellipse 95% 55% at 42% 48%, rgba(200, 155, 107, 0.07), transparent 62%),
+    linear-gradient(95deg, transparent 40%, rgba(70, 100, 150, 0.04) 50%, transparent 60%);
+  background-size: 100% 100%, 180% 100%;
+  animation: voidAmberShear 22s ease-in-out infinite alternate;
 }
-@keyframes rainFall { 0%{background-position:0 0}100%{background-position:0 100%} }
+@keyframes voidShelfDrift { 0%{background-position:0% 0%}100%{background-position:0% 85%} }
+@keyframes voidAmberShear { 0%{background-position:0% 0%,0% 0%}100%{background-position:0% 0%,18% 0%} }
 .grain {
   position: fixed; inset: 0; pointer-events: none; z-index: 9001; opacity: 0.04;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
