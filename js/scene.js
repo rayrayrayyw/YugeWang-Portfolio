@@ -8,14 +8,14 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
    Volumetric fog, 3D particle field, bloom, mouse-look camera
    ================================================================ */
 
-const PARTICLE_COUNT = window.innerWidth < 600 ? 80 : 220;
+const PARTICLE_COUNT = window.innerWidth < 600 ? 60 : 150;
 const isMobile = !window.matchMedia('(pointer:fine)').matches;
 
 const container = document.getElementById('heroWebGL');
 if (!container) throw new Error('No #heroWebGL element');
 
 const scene    = new THREE.Scene();
-scene.fog      = new THREE.FogExp2(0x06070c, 0.045);
+scene.fog      = new THREE.FogExp2(0x06070c, 0.055);
 scene.background = new THREE.Color(0x06070c);
 
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
@@ -25,7 +25,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: false })
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.1;
+renderer.toneMappingExposure = 0.82;
 container.appendChild(renderer.domElement);
 
 /* ---------- post-processing ---------- */
@@ -35,9 +35,9 @@ composer.addPass(new RenderPass(scene, camera));
 if (!isMobile) {
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    1.4,   // strength
-    0.6,   // radius
-    0.3    // threshold
+    0.55,  // strength (was 1.4 — less halation behind UI text)
+    0.42,  // radius
+    0.52   // threshold — bloom mostly on brighter cores only
   );
   composer.addPass(bloom);
 }
@@ -97,8 +97,8 @@ const fogMat = new THREE.ShaderMaterial({
       float n2 = snoise(vUv * 6.0 - vec2(uTime * 0.015, 0.0));
       float blend = smoothstep(-0.3, 0.6, n * 0.5 + n2 * 0.3);
       vec3 col = mix(uColor1, uColor2, blend);
-      float alpha = 0.55 * smoothstep(0.0, 0.5, vUv.y) * smoothstep(1.0, 0.6, vUv.y);
-      alpha *= (0.6 + 0.4 * blend);
+      float alpha = 0.32 * smoothstep(0.0, 0.5, vUv.y) * smoothstep(1.0, 0.6, vUv.y);
+      alpha *= (0.55 + 0.35 * blend);
       gl_FragColor = vec4(col, alpha);
     }
   `
@@ -108,9 +108,9 @@ fogPlane.position.set(0, 0, -18);
 scene.add(fogPlane);
 
 /* ---------- ambient light layers ---------- */
-const ambLight = new THREE.AmbientLight(0x1a1520, 0.3);
+const ambLight = new THREE.AmbientLight(0x1a1520, 0.22);
 scene.add(ambLight);
-const dirLight = new THREE.DirectionalLight(0xc89b7b, 0.15);
+const dirLight = new THREE.DirectionalLight(0xc89b7b, 0.09);
 dirLight.position.set(2, 5, 3);
 scene.add(dirLight);
 
@@ -122,11 +122,11 @@ const pSpeeds    = new Float32Array(PARTICLE_COUNT);
 const pPhases    = new Float32Array(PARTICLE_COUNT);
 
 for (let i = 0; i < PARTICLE_COUNT; i++) {
-  pPositions[i * 3]     = (Math.random() - 0.5) * 20;
-  pPositions[i * 3 + 1] = (Math.random() - 0.5) * 14;
-  pPositions[i * 3 + 2] = (Math.random() - 0.5) * 16 - 2;
-  pSizes[i]   = Math.random() * 4.0 + 1.0;
-  pAlphas[i]  = Math.random() * 0.6 + 0.15;
+  pPositions[i * 3]     = (Math.random() - 0.5) * 18;
+  pPositions[i * 3 + 1] = (Math.random() - 0.5) * 12;
+  pPositions[i * 3 + 2] = (Math.random() - 0.5) * 12 - 5;
+  pSizes[i]   = Math.random() * 1.35 + 0.35;
+  pAlphas[i]  = Math.random() * 0.28 + 0.06;
   pSpeeds[i]  = Math.random() * 0.3 + 0.05;
   pPhases[i]  = Math.random() * Math.PI * 2;
 }
@@ -144,7 +144,7 @@ const pMat = new THREE.ShaderMaterial({
   blending: THREE.AdditiveBlending,
   uniforms: {
     uTime:  { value: 0 },
-    uScale: { value: window.innerHeight * renderer.getPixelRatio() * 0.5 },
+    uScale: { value: window.innerHeight * renderer.getPixelRatio() * 0.26 },
   },
   vertexShader: `
     attribute float aSize;
@@ -164,18 +164,18 @@ const pMat = new THREE.ShaderMaterial({
       gl_Position = projectionMatrix * mvPos;
       gl_PointSize = aSize * uScale / -mvPos.z;
 
-      float flicker = 0.5 + 0.5 * sin(uTime * 1.5 + aPhase * 3.0);
-      vAlpha = aAlpha * (0.4 + 0.6 * flicker);
+      float flicker = 0.55 + 0.45 * sin(uTime * 1.2 + aPhase * 3.0);
+      vAlpha = aAlpha * (0.55 + 0.45 * flicker) * 0.65;
     }
   `,
   fragmentShader: `
     varying float vAlpha;
     void main() {
       float d = length(gl_PointCoord - 0.5) * 2.0;
-      float core = smoothstep(1.0, 0.2, d);
-      float glow = smoothstep(1.0, 0.0, d) * 0.35;
+      float core = smoothstep(1.0, 0.35, d);
+      float glow = smoothstep(1.0, 0.0, d) * 0.16;
       float a = (core + glow) * vAlpha;
-      vec3 col = mix(vec3(0.82, 0.62, 0.42), vec3(1.0, 0.85, 0.6), core);
+      vec3 col = mix(vec3(0.55, 0.42, 0.32), vec3(0.78, 0.62, 0.48), core);
       gl_FragColor = vec4(col, a);
     }
   `
@@ -202,7 +202,7 @@ function onResize() {
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
   composer.setSize(w, h);
-  pMat.uniforms.uScale.value = h * renderer.getPixelRatio() * 0.5;
+  pMat.uniforms.uScale.value = h * renderer.getPixelRatio() * 0.26;
 }
 window.addEventListener('resize', onResize);
 
@@ -236,8 +236,8 @@ function animate() {
     const yi = i * 3 + 1;
     if (posArr[yi] > 7) {
       posArr[yi] = -7;
-      posArr[i * 3]     = (Math.random() - 0.5) * 20;
-      posArr[i * 3 + 2] = (Math.random() - 0.5) * 16 - 2;
+      posArr[i * 3]     = (Math.random() - 0.5) * 18;
+      posArr[i * 3 + 2] = (Math.random() - 0.5) * 12 - 5;
     }
   }
   pGeo.attributes.position.needsUpdate = true;

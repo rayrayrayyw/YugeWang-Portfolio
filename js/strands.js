@@ -78,43 +78,61 @@ function drawStrand(s, i, t) {
   const ex = s.ox + dx * progress;
   const ey = s.oy + dy * progress;
 
-  // sway offset at control point
-  const sway = Math.sin(t * s.freq + s.phase) * s.amp * progress;
+  const isHovered = (i === hoveredIndex);
+  const isAnyHovered = (hoveredIndex !== -1);
+  const swayAmp = (isHovered ? 0.35 : 1) * s.amp;
+  const sway = Math.sin(t * (isHovered ? s.freq * 0.65 : s.freq) + s.phase) * swayAmp * progress;
   const cpx = (s.ox + ex) / 2 + sway;
   const cpy = (s.oy + ey) / 2 - Math.abs(dy) * 0.15;
 
-  const isHovered = (i === hoveredIndex);
-  const isAnyHovered = (hoveredIndex !== -1);
-
-  // base alpha
-  let alpha = isHovered ? 0.7 : (isAnyHovered ? 0.1 : 0.3);
-  // pulse on hovered strand
+  let alpha = isHovered ? 0.42 : (isAnyHovered ? 0.07 : 0.22);
   if (isHovered) {
-    alpha += Math.sin(t * 4) * 0.15;
+    alpha += Math.sin(t * 1.8) * 0.04;
   }
   alpha *= progress;
 
-  const lw = isHovered ? s.width * 2.2 : s.width;
+  const lw = isHovered ? Math.min(s.width * 1.35, 2) : s.width;
 
-  // glow layer
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(s.ox, s.oy);
-  ctx.quadraticCurveTo(cpx, cpy, ex, ey);
-  ctx.strokeStyle = `rgba(200, 155, 110, ${alpha * 0.3})`;
-  ctx.lineWidth = lw + 4;
-  ctx.shadowColor = 'rgba(200, 150, 110, 0.4)';
-  ctx.shadowBlur = isHovered ? 18 : 6;
-  ctx.stroke();
-  ctx.restore();
-
-  // core line
-  ctx.beginPath();
-  ctx.moveTo(s.ox, s.oy);
-  ctx.quadraticCurveTo(cpx, cpy, ex, ey);
-  ctx.strokeStyle = `rgba(210, 165, 120, ${alpha})`;
-  ctx.lineWidth = lw;
-  ctx.stroke();
+  if (isHovered) {
+    /* single calm stroke — less “busy” than double glow + pulse */
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(s.ox, s.oy);
+    ctx.quadraticCurveTo(cpx, cpy, ex, ey);
+    ctx.strokeStyle = `rgba(200, 155, 110, ${alpha * 0.35})`;
+    ctx.lineWidth = lw + 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = 'rgba(200, 155, 107, 0.22)';
+    ctx.stroke();
+    ctx.restore();
+    ctx.beginPath();
+    ctx.moveTo(s.ox, s.oy);
+    ctx.quadraticCurveTo(cpx, cpy, ex, ey);
+    ctx.strokeStyle = `rgba(210, 175, 130, ${alpha})`;
+    ctx.lineWidth = lw;
+    ctx.lineCap = 'round';
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+  } else {
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(s.ox, s.oy);
+    ctx.quadraticCurveTo(cpx, cpy, ex, ey);
+    ctx.strokeStyle = `rgba(200, 155, 110, ${alpha * 0.22})`;
+    ctx.lineWidth = lw + 2;
+    ctx.shadowBlur = isAnyHovered ? 2 : 4;
+    ctx.shadowColor = 'rgba(200, 150, 110, 0.18)';
+    ctx.stroke();
+    ctx.restore();
+    ctx.beginPath();
+    ctx.moveTo(s.ox, s.oy);
+    ctx.quadraticCurveTo(cpx, cpy, ex, ey);
+    ctx.strokeStyle = `rgba(200, 160, 118, ${alpha})`;
+    ctx.lineWidth = lw;
+    ctx.stroke();
+  }
 
   // origin node glow
   if (i === 0) {
@@ -144,6 +162,7 @@ const obs = new IntersectionObserver(
 obs.observe(canvas);
 
 let lastBuild = 0;
+const REBUILD_MS = 1800;
 function loop() {
   requestAnimationFrame(loop);
   if (!visible || strands.length === 0) return;
@@ -151,8 +170,8 @@ function loop() {
   const now = performance.now();
   const t   = now * 0.001;
 
-  // rebuild positions periodically (resize/scroll)
-  if (now - lastBuild > 500) {
+  /* Rebuild strand anchors occasionally (layout/fonts); avoid 500ms thrash */
+  if (now - lastBuild > REBUILD_MS) {
     buildStrands();
     lastBuild = now;
   }
