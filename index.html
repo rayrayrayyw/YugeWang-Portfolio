@@ -32,16 +32,21 @@
     <!-- Strand connection canvas -->
     <canvas id="strandCanvas" class="strand-canvas" aria-hidden="true"></canvas>
 
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <div class="hero-scan-sweep" aria-hidden="true"></div>
+    <div class="hero-chiral-noise" aria-hidden="true"></div>
+
     <!-- HUD corners -->
-    <div class="hud hud-tl anim-fade" style="--d:2s"><span class="hud-dot"></span>STRAND.ONLINE</div>
+    <div class="hud hud-tl anim-fade" style="--d:2s"><span class="hud-dot"></span><span id="hudChiral">STRAND.ONLINE</span></div>
     <div class="hud hud-tr anim-fade" style="--d:2.2s">BUILD 2026.06</div>
     <div class="hud hud-bl anim-fade" style="--d:2.4s">BRIDGE://HOME</div>
     <div class="hud hud-br anim-fade" style="--d:2.6s" id="heroCoords">[0000, 0000]</div>
 
     <!-- Menu overlay -->
     <div class="menu-screen">
+      <div class="menu-screen-parallax" id="heroParallax">
 
-      <div class="hero-upper anim-fade" style="--d:.3s">
+      <div class="hero-upper anim-fade" style="--d:.3s" id="heroUpper">
         <h1 class="hero-headline chromatic" data-text="BETWEEN">BETWEEN</h1>
         <h1 class="hero-headline hero-headline--2 chromatic" data-text="WORLDS">WORLDS</h1>
       </div>
@@ -83,9 +88,10 @@
       <p class="hero-flavor anim-fade" style="--d:1.6s">
         <span id="typedText"></span><span class="blink-cursor">_</span>
       </p>
+      </div>
     </div>
 
-    <a href="#content-start" class="scroll-cta anim-fade" style="--d:2s">
+    <a href="#content-start" class="scroll-cta anim-fade" style="--d:2s" id="scrollCta">
       <span class="scroll-label">SCROLL TO ENTER</span>
       <span class="scroll-line"></span>
     </a>
@@ -232,6 +238,26 @@
         </div>
       </section>
 
+      <!-- Uplink / email — same width as briefing / grid (replace href + .eub-addr if needed) -->
+      <section class="email-uplink reveal" aria-label="Contact">
+        <div class="sec-header">
+          <span class="sec-marker">▸</span>
+          <span class="sec-label">UPLINK_TRANSMITTER</span>
+          <span class="sec-line"></span>
+        </div>
+        <div class="email-uplink-inner">
+          <span class="email-uplink-dot" aria-hidden="true"></span>
+          <div class="email-uplink-mid">
+            <span class="email-uplink-kicker">OPEN LINE</span>
+            <p class="email-uplink-lede">Collaboration, playtests, or level design — send a signal.</p>
+          </div>
+          <a href="mailto:yugewang@sfu.ca" class="email-uplink-cta">
+            <span class="eub-label">EMAIL ME <span class="eub-arrow" aria-hidden="true">↗</span></span>
+            <span class="eub-addr">yugewang@sfu.ca</span>
+          </a>
+        </div>
+      </section>
+
       <footer class="page-footer reveal">
         <a href="#hero" class="footer-top">↑ RETURN TO MENU</a>
         <p class="footer-copy">© 2026 Yuge Wang · Crafted World by passion.</p>
@@ -255,7 +281,7 @@
   /* --- hero coords --- */
   var hero = document.getElementById('hero');
   var coordsEl = document.getElementById('heroCoords');
-  if (hero && window.matchMedia('(pointer:fine)').matches) {
+  if (hero && coordsEl && window.matchMedia('(pointer:fine)').matches) {
     hero.addEventListener('mousemove', function (e) {
       coordsEl.textContent = '[' +
         String(Math.round(e.clientX)).padStart(4,'0') + ', ' +
@@ -263,12 +289,67 @@
     });
   }
 
+  /* --- hero: parallax, chiral HUD, glitch, scroll nudge (Death Stranding feel) --- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var parallaxRoot = document.getElementById('heroParallax');
+  var heroUpper = document.getElementById('heroUpper');
+  var scrollCta = document.getElementById('scrollCta');
+  var hudChiral = document.getElementById('hudChiral');
+
+  if (!reduceMotion && hero && parallaxRoot && window.matchMedia('(pointer:fine)').matches) {
+    hero.addEventListener('mousemove', function (e) {
+      var rx = (e.clientX / window.innerWidth - 0.5) * 2;
+      var ry = (e.clientY / window.innerHeight - 0.5) * 2;
+      parallaxRoot.style.transform =
+        'perspective(1400px) rotateY(' + (rx * 3.2) + 'deg) rotateX(' + (-ry * 2.4) + 'deg) translateZ(0)';
+      if (scrollCta) {
+        scrollCta.style.setProperty('--scroll-nudge-x', (rx * 6) + 'px');
+        scrollCta.style.setProperty('--scroll-nudge-y', (ry * 4) + 'px');
+      }
+    });
+    hero.addEventListener('mouseleave', function () {
+      parallaxRoot.style.transform = '';
+      if (scrollCta) {
+        scrollCta.style.setProperty('--scroll-nudge-x', '0px');
+        scrollCta.style.setProperty('--scroll-nudge-y', '0px');
+      }
+    });
+  }
+
+  if (!reduceMotion && heroUpper) {
+    var headlines = heroUpper.querySelectorAll('.hero-headline');
+    function glitchTick() {
+      if (!headlines.length) return;
+      var t = headlines[Math.floor(Math.random() * headlines.length)];
+      t.classList.remove('glitch-tick');
+      void t.offsetWidth;
+      t.classList.add('glitch-tick');
+      setTimeout(function () { t.classList.remove('glitch-tick'); }, 200);
+    }
+    setInterval(glitchTick, 5000);
+  }
+
+  if (!reduceMotion && hudChiral) {
+    var chiralMsgs = [
+      'STRAND.ONLINE',
+      'CHIRALITY · STABLE',
+      'UPLINK · NOMINAL',
+      'BRIDGE.SYNC',
+      'BB.LINK · OK'
+    ];
+    var chiralI = 0;
+    setInterval(function () {
+      chiralI = (chiralI + 1) % chiralMsgs.length;
+      hudChiral.textContent = chiralMsgs[chiralI];
+    }, 5200);
+  }
+
   /* --- typing --- */
   var typedEl = document.getElementById('typedText');
   var phrase  = 'every world is a bridge to the next';
   var ci = 0;
   function typeNext() {
-    if (ci < phrase.length) {
+    if (typedEl && ci < phrase.length) {
       typedEl.textContent += phrase.charAt(ci++);
       setTimeout(typeNext, 40 + Math.random() * 45);
     }

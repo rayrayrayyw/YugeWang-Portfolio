@@ -448,6 +448,102 @@ body {
 }
 
 /* ================================================================
+   EMAIL UPLINK (same treatment as home)
+   ================================================================ */
+.email-uplink {
+  max-width: 90%;
+  margin: 48px auto 0;
+}
+.email-uplink-inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 32px;
+  padding: 28px 32px;
+  border: 1px solid rgba(200, 155, 107, 0.14);
+  background: linear-gradient(135deg, rgba(200, 155, 107, 0.05) 0%, rgba(12, 14, 22, 0.75) 55%, rgba(6, 7, 12, 0.9) 100%);
+  box-shadow: 0 0 0 1px rgba(200, 155, 107, 0.04) inset, 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+.email-uplink-inner::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--amber-glow), var(--amber-dim));
+  opacity: 0.85;
+}
+.email-uplink-copy { flex: 1; min-width: 200px; padding-left: 8px; }
+.email-uplink-kicker {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  color: var(--amber-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+.email-uplink-lede {
+  font-family: 'SST', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0;
+  max-width: 520px;
+  opacity: 0.92;
+}
+.email-uplink-cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 18px 28px;
+  min-width: 220px;
+  text-decoration: none;
+  border: 1px solid rgba(200, 155, 107, 0.35);
+  background: rgba(6, 7, 12, 0.65);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+}
+.email-uplink-cta:hover {
+  border-color: var(--amber);
+  box-shadow: 0 0 24px rgba(200, 155, 107, 0.12);
+  transform: translateY(-2px);
+}
+.eub-label {
+  font-family: 'SackersGothic', 'Courier New', monospace;
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: 0.22em;
+  color: var(--amber-glow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.eub-addr {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+.email-uplink-cta:hover .eub-addr { color: var(--text); }
+.eub-arrow {
+  font-size: 0.9rem;
+  color: var(--amber-dim);
+  transition: color 0.25s, transform 0.25s;
+}
+.email-uplink-cta:hover .eub-label .eub-arrow {
+  color: var(--amber-glow);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 640px) {
+  .email-uplink-inner { padding: 22px 20px; }
+  .email-uplink-cta { align-items: center; width: 100%; min-width: 0; }
+}
+
+/* ================================================================
    FOOTER
    ================================================================ */
 .page-footer {
@@ -546,26 +642,59 @@ body {
 /* ================================================================
    PROJECT DRAWER (same as detail pages)
    ================================================================ */
+@keyframes drawerTabPulse {
+  0%, 100% { box-shadow: -4px 0 18px rgba(200,155,107,0.18), inset 0 0 0 1px rgba(200,155,107,0.12); }
+  50%      { box-shadow: -8px 0 32px rgba(200,155,107,0.35), inset 0 0 0 1px rgba(200,155,107,0.22); }
+}
+@keyframes drawerChevNudge {
+  0%, 100% { transform: translateX(0); opacity: 0.85; }
+  50%      { transform: translateX(-4px); opacity: 1; }
+}
 .drawer-tab {
   position: fixed; right: 0; top: 50%;
   transform: translateY(-50%);
   z-index: 800;
-  writing-mode: vertical-rl;
-  font-family: 'Courier New', monospace; font-size: 0.6rem;
-  letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--amber-dim);
-  background: rgba(12,14,22,0.8);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(200,155,107,0.1);
-  border-right: none;
-  padding: 18px 10px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  min-height: 120px;
+  padding: 16px 14px;
   cursor: pointer;
-  transition: color .3s, background .3s;
-  border-radius: 6px 0 0 6px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  color: var(--amber-glow);
+  background: linear-gradient(180deg, rgba(200,155,107,0.14) 0%, rgba(12,14,22,0.96) 45%, rgba(12,14,22,0.98) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(200,155,107,0.45);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  transition: color .25s, transform .25s, border-color .25s;
+  animation: drawerTabPulse 2.8s ease-in-out infinite;
+  text-shadow: 0 0 14px rgba(200,155,107,0.35);
 }
 .drawer-tab:hover {
-  color: var(--amber-glow);
-  background: rgba(12,14,22,0.95);
+  color: #f0e4d0;
+  border-color: rgba(200,155,107,0.65);
+  transform: translateY(-50%) translateX(-2px);
+}
+.drawer-tab-kicker {
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+  color: var(--amber);
+  opacity: 0.95;
+}
+.drawer-tab-main {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.2;
+}
+.drawer-tab-chev {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--amber);
+  margin-top: 2px;
+  animation: drawerChevNudge 1.2s ease-in-out infinite;
 }
 
 .drawer-overlay {
@@ -657,5 +786,6 @@ body {
 
 @media (max-width: 480px) {
   .drawer-panel { width: 280px; }
-  .drawer-tab { padding: 14px 8px; font-size: 0.55rem; }
+  .drawer-tab { min-height: 100px; padding: 12px 10px; }
+  .drawer-tab-main { font-size: 0.68rem; letter-spacing: 0.18em; }
 }

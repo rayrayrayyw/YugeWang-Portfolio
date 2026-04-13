@@ -230,6 +230,20 @@
         </div>
       </section>
 
+      <!-- Uplink / email (replace address in href + .eub-addr if needed) -->
+      <section class="email-uplink reveal" aria-label="Contact">
+        <div class="email-uplink-inner">
+          <div class="email-uplink-copy">
+            <span class="email-uplink-kicker">▸ UPLINK · TRANSMITTER</span>
+            <p class="email-uplink-lede">Open a line for collaboration, playtests, or level design talk.</p>
+          </div>
+          <a href="mailto:yugewang@sfu.ca" class="email-uplink-cta">
+            <span class="eub-label">EMAIL ME <span class="eub-arrow" aria-hidden="true">↗</span></span>
+            <span class="eub-addr">yugewang@sfu.ca</span>
+          </a>
+        </div>
+      </section>
+
       <footer class="page-footer reveal">
         <a href="#top" class="footer-top">↑ RETURN TO TOP</a>
         <p class="footer-copy">© 2025 Yuge Wang · Crafted by hand.</p>
@@ -239,7 +253,11 @@
   </div>
 
   <!-- Project Drawer -->
-  <button class="drawer-tab" id="drawerTab" aria-label="Browse projects">PROJECTS</button>
+  <button type="button" class="drawer-tab" id="drawerTab" aria-label="Open all projects">
+    <span class="drawer-tab-kicker">OPEN</span>
+    <span class="drawer-tab-main">LIST</span>
+    <span class="drawer-tab-chev" aria-hidden="true">«</span>
+  </button>
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <div class="drawer-panel" id="drawerPanel">
     <div class="drawer-head">
