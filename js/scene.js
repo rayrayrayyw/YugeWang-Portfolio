@@ -8,7 +8,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
    Volumetric fog, 3D particle field, bloom, mouse-look camera
    ================================================================ */
 
-const PARTICLE_COUNT = window.innerWidth < 600 ? 60 : 150;
+const PARTICLE_COUNT = window.innerWidth < 600 ? 68 : 168;
 const isMobile = !window.matchMedia('(pointer:fine)').matches;
 
 const container = document.getElementById('heroWebGL');
@@ -25,7 +25,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: false })
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.82;
+renderer.toneMappingExposure = 0.86;
 container.appendChild(renderer.domElement);
 
 /* ---------- post-processing ---------- */
@@ -35,9 +35,9 @@ composer.addPass(new RenderPass(scene, camera));
 if (!isMobile) {
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    0.55,  // strength (was 1.4 — less halation behind UI text)
-    0.42,  // radius
-    0.52   // threshold — bloom mostly on brighter cores only
+    0.58,  // strength — soft halo on particles, still below original wash
+    0.34,  // radius — tighter bloom = less full-screen bleed
+    0.54   // threshold — only brighter cores bloom
   );
   composer.addPass(bloom);
 }
@@ -125,8 +125,8 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
   pPositions[i * 3]     = (Math.random() - 0.5) * 18;
   pPositions[i * 3 + 1] = (Math.random() - 0.5) * 12;
   pPositions[i * 3 + 2] = (Math.random() - 0.5) * 12 - 5;
-  pSizes[i]   = Math.random() * 1.35 + 0.35;
-  pAlphas[i]  = Math.random() * 0.28 + 0.06;
+  pSizes[i]   = Math.random() * 2.05 + 0.42;
+  pAlphas[i]  = Math.random() * 0.32 + 0.07;
   pSpeeds[i]  = Math.random() * 0.3 + 0.05;
   pPhases[i]  = Math.random() * Math.PI * 2;
 }
@@ -144,7 +144,7 @@ const pMat = new THREE.ShaderMaterial({
   blending: THREE.AdditiveBlending,
   uniforms: {
     uTime:  { value: 0 },
-    uScale: { value: window.innerHeight * renderer.getPixelRatio() * 0.26 },
+    uScale: { value: window.innerHeight * renderer.getPixelRatio() * 0.33 },
   },
   vertexShader: `
     attribute float aSize;
@@ -165,15 +165,15 @@ const pMat = new THREE.ShaderMaterial({
       gl_PointSize = aSize * uScale / -mvPos.z;
 
       float flicker = 0.55 + 0.45 * sin(uTime * 1.2 + aPhase * 3.0);
-      vAlpha = aAlpha * (0.55 + 0.45 * flicker) * 0.65;
+      vAlpha = aAlpha * (0.55 + 0.45 * flicker) * 0.72;
     }
   `,
   fragmentShader: `
     varying float vAlpha;
     void main() {
       float d = length(gl_PointCoord - 0.5) * 2.0;
-      float core = smoothstep(1.0, 0.35, d);
-      float glow = smoothstep(1.0, 0.0, d) * 0.16;
+      float core = smoothstep(1.0, 0.32, d);
+      float glow = smoothstep(1.0, 0.0, d) * 0.18;
       float a = (core + glow) * vAlpha;
       vec3 col = mix(vec3(0.55, 0.42, 0.32), vec3(0.78, 0.62, 0.48), core);
       gl_FragColor = vec4(col, a);
@@ -202,7 +202,7 @@ function onResize() {
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
   composer.setSize(w, h);
-  pMat.uniforms.uScale.value = h * renderer.getPixelRatio() * 0.26;
+  pMat.uniforms.uScale.value = h * renderer.getPixelRatio() * 0.33;
 }
 window.addEventListener('resize', onResize);
 
